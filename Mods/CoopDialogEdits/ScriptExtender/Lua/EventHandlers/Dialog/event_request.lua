@@ -32,7 +32,7 @@ function dialog_requested(character_target,character_source)
   end
 
 	--Check if any passives are toggled for dialog ownership rolling and if so, roll the owner
-	if check_reassignment_requested(character_dlg_target) then
+	if check_reassignment_requested(character_dlg_target, character_dlg_owner) then
 		--Check if dialog target isn't a vendor or otherwise special (maybe companions?), as that would be annoying
 		if not check_if_target_is_vendor(character_dlg_target) and not check_if_target_is_special(character_dlg_target) then
 			character_dlg_new = determine_dialog_winner(db_party_players,character_source)

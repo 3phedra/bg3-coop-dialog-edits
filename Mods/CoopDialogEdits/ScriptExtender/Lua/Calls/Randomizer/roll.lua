@@ -18,17 +18,13 @@ function roll_for_dialog(method,characters)
 	elseif method == "charisma" then
 		for character in elementIterator(characters) do
 			local modifier = GetAbility(character, "Charisma")
-			--TODO Do proper math to determine DnD modifiers. This is a placeholder!!
-			modifier = modifier / 4
-			--db_dialog_competitors.insert(Random(20) + 1,character)
+			modifier = (-10 + modifier) / 2
 			db_dialog_competitors[character] = Random(20) + 1 + modifier + db_mod_dlg_roll_fairness[character]
 		end
 	elseif method == "initiative" then
 		for character in elementIterator(characters) do
 			local modifier = GetAbility(character, "Initiative")
-			--TODO Do proper math to determine DnD modifiers. This is a placeholder!!
-			modifier = modifier / 4
-			--db_dialog_competitors.insert(Random(20) + 1,character)
+			modifier = (-10 + modifier) / 2
 			db_dialog_competitors[character] = Random(20) + 1 + modifier + db_mod_dlg_roll_fairness[character]
 		end
 	elseif method == "vanilla" then

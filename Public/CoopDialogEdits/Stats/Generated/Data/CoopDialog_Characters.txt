@@ -8,7 +8,7 @@ data "Hearing" "1800"
 data "Flags" "ObscurityWithoutSneaking"
 data "SpellCastingAbility" "Intelligence"
 data "ActionResources" "ActionPoint:1;BonusActionPoint:1;ReactionActionPoint:1"
-data "Passives" "ShortResting;NonLethal;WeaponThrow;Perform;AttackOfOpportunity;DarknessRules;CombatStartAttack;CoopDialogPassiveMethodVanilla;CoopDialogPassiveMethodRandom;CoopDialogPassiveMethodInitiative;CoopDialogPassiveMethodCharisma;CoopDialogPassivePreferenceFollowers;CoopDialogPassivePreferenceAsk;CoopDialogPassiveListenerOptIn;CoopDialogPassivePreferenceDisable"
+data "Passives" "ShortResting;NonLethal;WeaponThrow;Perform;AttackOfOpportunity;DarknessRules;CombatStartAttack;CoopDialogPassiveMethodVanilla;CoopDialogPassiveMethodRandom;CoopDialogPassiveMethodInitiative;CoopDialogPassiveMethodCharisma;CoopDialogPassivePreferenceFollowers;CoopDialogPassivePreferenceAsk;CoopDialogPassivePreferenceDistance;CoopDialogPassiveListenerOptIn;CoopDialogPassivePreferenceDisable"
 data "DifficultyStatuses" "STATUS_EASY:PLAYER_BONUSES_EASYMODE"
 
 new entry "ORIGIN_Karlach"

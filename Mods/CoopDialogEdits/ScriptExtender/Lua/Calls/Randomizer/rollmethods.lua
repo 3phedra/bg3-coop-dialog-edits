@@ -1,4 +1,4 @@
-function check_reassignment_requested(character_target)
+function check_reassignment_requested(character_target, character_source)
 	--Check if reassignment is needed at all
 	--TODO Add more methods
 
@@ -16,19 +16,22 @@ function check_reassignment_requested(character_target)
 		end
 	end
 
-	if IsSpellActive(GetHostCharacter(), "DialogPreferenceOptIn") == 1 then
-		for playercharacter in elementIterator(db_party_players) do:
+	if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 then
+	    db_characters_want_dialog[1] = character_source
+		for playercharacter in elementIterator(db_party_players) do
 			if HasActiveStatus(playercharacter, "DialogListenerOptIn") == 1 then
-				table.insert(db_characters_want_dialog,playercharacter)
+			    if playercharacter ~= character_source then
+				    table.insert(db_characters_want_dialog,playercharacter)
+                end
 			end
 		end
 	end
 
-	if HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil then
-		reassignment_requested = true
-  else
-    reassignment_requested = false
-	end
+    if HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil then
+        reassignment_requested = true
+    else
+        reassignment_requested = false
+    end
 
 	return reassignment_requested
 end

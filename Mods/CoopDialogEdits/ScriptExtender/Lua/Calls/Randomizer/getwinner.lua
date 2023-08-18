@@ -1,5 +1,6 @@
 Ext.Require("Calls/Randomizer/roll.lua")
-local function fairness_handler(character_dlg_roll_winner)
+
+local function fairness_handler(characters,character_dlg_roll_winner)
 
 	--Initialize table entry for character if it hasn't been done yet
   if db_count_dlg_roll_winner[character_dlg_roll_winner] == nil then
@@ -27,30 +28,39 @@ function determine_dialog_winner(characters,character_owner)
 	local character_dlg_roll_winner = character_owner
 
 	--TODO make toggles host exclusive
-	if IsSpellActive(GetHostCharacter(), "DialogMethodRandom") then
+	if HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") then
 		method = "random"
-	elseif IsSpellActive(GetHostCharacter(), "DialogMethodVanilla") then
+	elseif HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") then
 		method = "vanilla"
-	elseif IsSpellActive(GetHostCharacter(), "DialogMethodInitiative") then
+	elseif HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") then
 		method = "initiative"
-	elseif IsSpellActive(GetHostCharacter(), "DialogMethodCharisma") then
+	elseif HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") then
 		method = "charisma"
 	end
 
 	--Check if opt-in preference is set and opt-in table containts any characters at all
-	if IsSpellActive(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and db_characters_want_dialog[1] ~= nil then
+	if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and db_characters_want_dialog[1] ~= nil then
 		ask = true
 		characters = db_characters_want_dialog
 	end
 
 	--Get dialog ownership winner
+	--TODO I really cant think today. Make this less of a mess.
 	if method ~= "vanilla" then
-    character_dlg_roll_winner = roll_for_dialog(method,characters)
-  else
-    character_dlg_roll_winner = character_owner
-  end
+	    if #db_characters_want_dialog > 1 then
+            character_dlg_roll_winner = roll_for_dialog(method,characters)
+        elseif ask then
+            character_dlg_roll_winner = characters[1]
+            return character_dlg_roll_winner
+        else
+            character_dlg_roll_winner = roll_for_dialog(method,characters)
+        end
+    else
+        character_dlg_roll_winner = character_owner
+        return character_dlg_roll_winner
+    end
 
-	fairness_handler(character_dlg_roll_winner)
+	fairness_handler(characters, character_dlg_roll_winner)
 
 	return character_dlg_roll_winner
 end
