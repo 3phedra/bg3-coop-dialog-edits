@@ -1,5 +1,5 @@
 {
     "RequiredVersion": 1,
-	"ModTable": "NRD_Test",
+	"ModTable": "CoopDialogEdits",
 	"FeatureFlags": ["Lua","OsirisExtensions"]
 }
