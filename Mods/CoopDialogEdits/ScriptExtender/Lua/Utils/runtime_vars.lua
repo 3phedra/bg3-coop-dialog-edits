@@ -5,6 +5,7 @@ db_userids = {}
 db_dialog_competitors = {}
 db_count_dlg_roll_winner = {}
 db_mod_dlg_roll_fairness = {}
+db_characters_want_dialog = {}
 
 is_automated_dialog = 0
 was_follower_reassigned = 0
@@ -26,6 +27,9 @@ character_reassigned_follower = "NULL_00000000-0000-0000-0000-000000000000"
 character_dlg_owner_reassigned = "NULL_00000000-0000-0000-0000-000000000000"
 character_dlg_roll_winner = "NULL_00000000-0000-0000-0000-000000000000"
 
+region_dlg = ""
+is_region_camp = 0
+
 function cleanup()
     db_party_players = {}
     db_party_all = {}
@@ -34,6 +38,7 @@ function cleanup()
     db_camp_characters = {}
     --db_count_dlg_roll_winner = {}
     --db_mod_dlg_roll_fairness = {}
+    db_characters_want_dialog = {}
 
     is_automated_dialog = 0
     was_follower_reassigned = 0
@@ -54,4 +59,7 @@ function cleanup()
     character_reassigned_follower = "NULL_00000000-0000-0000-0000-000000000000"
     character_dlg_owner_reassigned = "NULL_00000000-0000-0000-0000-000000000000"
     character_dlg_roll_winner = "NULL_00000000-0000-0000-0000-000000000000"
+
+    region_dlg = ""
+    is_region_camp = 0
 end

@@ -1,4 +1,10 @@
+Ext.Require("Queries/UI/notify.lua")
+
 function dialog_started(dialog_UUID, dialog_ID)
+	if IsSpellActive(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
+		return
+	end
+
 	local character_distance_to_dialog
 	--Get character that triggered dialog event
 

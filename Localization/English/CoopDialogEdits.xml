@@ -1,26 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
-	<content contentuid="f8764c93-a828-45e4-ad5f-4c05ab168054" version="1">Fully Random Dialog</content>
-	<content contentuid="2224fe33-929e-4f43-9904-83d62f40c474" version="1">Dialog ownership is rolled amongst all active characters randomly and with no modifiers.</content>
-
-	<content contentuid="af9964cf-4be5-43ce-81bc-414c5d2338db" version="1">Roll Initiative to own Dialog</content>
-	<content contentuid="62b2af0d-7dec-4e15-b813-b690dccd29e1" version="1">Dialog ownership is rolled amongst all active characters based on initiative.</content>
-
-	<content contentuid="5d32e366-75f7-4d7f-9491-f08859e4464c" version="1">Roll Charisma to own Dialog</content>
-	<content contentuid="d5d85aa4-770a-46a4-8120-68d4811b9653" version="1">Dialog ownership is rolled amongst all active characters based on charisma.</content>
-
-	<content contentuid="e6857cb2-7233-4b3c-bb66-133d6231b4c1" version="1">Ask who owns Dialog</content>
-	<content contentuid="f951e156-08bd-400c-a2c1-037c847816f5" version="1">Dialog starter will be asked which active character leads the dialog.</content>
-
-	<content contentuid="e26a2389-c0ee-40f8-9ca6-52df30986ba6" version="1">Ask to own Dialog</content>
-	<content contentuid="6cf0537d-2bae-4f13-9e75-c91f1fb82e56" version="1">Dialog listeners will be asked to claim or pass on dialog ownership.</content>
-
-	<content contentuid="e06e77fb-b1e1-405d-85d7-079d94dbaf5f" version="1">Vanilla Dialog</content>
+	<content contentuid="e06e77fb-b1e1-405d-85d7-079d94dbaf5f" version="1">Dialog Method: Vanilla</content>
 	<content contentuid="ab0cf122-3c0b-4604-a7b9-42cfd5b63daa" version="1">Dialog starter always owns dialog ownership.</content>
 
-	<content contentuid="c50d8cd1-3e03-4a3c-8415-11b03b4a97cf" version="1">Disable mod</content>
+	<content contentuid="f8764c93-a828-45e4-ad5f-4c05ab168054" version="1">Dialog Method: Random</content>
+	<content contentuid="2224fe33-929e-4f43-9904-83d62f40c474" version="1">Dialog ownership is rolled amongst all active characters randomly and with no modifiers.</content>
+
+	<content contentuid="af9964cf-4be5-43ce-81bc-414c5d2338db" version="1">Dialog Method: Roll Initiative</content>
+	<content contentuid="62b2af0d-7dec-4e15-b813-b690dccd29e1" version="1">Dialog ownership is rolled amongst all active characters based on initiative.</content>
+
+	<content contentuid="5d32e366-75f7-4d7f-9491-f08859e4464c" version="1">Dialog Method: Roll Charisma</content>
+	<content contentuid="d5d85aa4-770a-46a4-8120-68d4811b9653" version="1">Dialog ownership is rolled amongst all active characters based on charisma.</content>
+
+	<content contentuid="e6857cb2-7233-4b3c-bb66-133d6231b4c1" version="1">Dialog Preference: Opt-in</content>
+	<content contentuid="f951e156-08bd-400c-a2c1-037c847816f5" version="1">Dialog methos will only be applied to characters who manually opt-in.</content>
+
+	<content contentuid="3015a606-afbc-4d80-bb54-6cea40614615" version="1">Dialog Preference: Include Followers</content>
+	<content contentuid="8a8f79d2-3072-4e73-ba23-f5f52517337c" version="1">Speaking to camp followers will be included in the roll for dialog.</content>
+
+	<content contentuid="eff13295-407f-4e55-b63c-b94fd832d403" version="1">Dialog Preference: Limit Distance</content>
+	<content contentuid="2fde70d1-fe2c-4e6b-a51c-0d2084c4d4f6" version="1">Limit this mod's features to characters within earshot.</content>
+
+	<content contentuid="c50d8cd1-3e03-4a3c-8415-11b03b4a97cf" version="1">Dialog Preference: Disable mod</content>
 	<content contentuid="d55fdd58-064b-49fb-8b0f-293aeffdeb3b" version="1">Disable every modification this mod does.</content>
 
-	<content contentuid="3015a606-afbc-4d80-bb54-6cea40614615" version="1">Follower Random Dialog</content>
-	<content contentuid="8a8f79d2-3072-4e73-ba23-f5f52517337c" version="1">Speaking to camp followers will be included in the roll for dialog.</content>
+	<content contentuid="e26a2389-c0ee-40f8-9ca6-52df30986ba6" version="1">Dialog Listeners: Opt-In</content>
+	<content contentuid="6cf0537d-2bae-4f13-9e75-c91f1fb82e56" version="1">If Host enabled opt-in preference, this is the opt-in for clients</content>
+
 </contentList>

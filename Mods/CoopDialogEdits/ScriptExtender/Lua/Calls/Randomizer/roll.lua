@@ -5,17 +5,17 @@ function roll_for_dialog(method,characters)
 	local roll_winner
 
 	--TODO Add more methods
-	if method == "random_roll" then
+	if method == "random" then
 		--Add all dialog competitors and their respective random roll to a table
 		for character in elementIterator(characters) do
 		    if db_mod_dlg_roll_fairness[character] == nil then
-		        db_mod_dlg_roll_fairness[character] = 0
-            end
+	        db_mod_dlg_roll_fairness[character] = 0
+        end
 			--db_dialog_competitors.insert(Random(20) + 1,character)
 			--TODO check how to utilize RequestPassiveRoll or RequestPassiveRollVersusSkill
 			db_dialog_competitors[character] = Random(20) + 1 + db_mod_dlg_roll_fairness[character]
 		end
-	elseif method == "roll_charisma" then
+	elseif method == "charisma" then
 		for character in elementIterator(characters) do
 			local modifier = GetAbility(character, "Charisma")
 			--TODO Do proper math to determine DnD modifiers. This is a placeholder!!
@@ -23,6 +23,16 @@ function roll_for_dialog(method,characters)
 			--db_dialog_competitors.insert(Random(20) + 1,character)
 			db_dialog_competitors[character] = Random(20) + 1 + modifier + db_mod_dlg_roll_fairness[character]
 		end
+	elseif method == "initiative" then
+		for character in elementIterator(characters) do
+			local modifier = GetAbility(character, "Initiative")
+			--TODO Do proper math to determine DnD modifiers. This is a placeholder!!
+			modifier = modifier / 4
+			--db_dialog_competitors.insert(Random(20) + 1,character)
+			db_dialog_competitors[character] = Random(20) + 1 + modifier + db_mod_dlg_roll_fairness[character]
+		end
+	elseif method == "vanilla" then
+		print("Why was this code reached???")
 	end
 
 	--Sort competitor table lowest to highest roll and pick the last entry as winner
