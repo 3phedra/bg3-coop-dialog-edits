@@ -9,8 +9,11 @@ This mod is a heavily work-in-progress adjustment to multiplayer dialog handling
 Features planned and present currently include
 
 - [x] Force add all characters into a dialog at start.
+  - [x] Optionally with distance/region limit.
 - [x] Toggle random or skill (Charisma/Initiative roll) based dialog leadership.
-- [ ] Ask players to claim ownership.
+   - [x] Optionally Exclude followers and camp.
+- [x] Enable dialog with grouped followers for the non-owner.
+- [x] Let specific characters make a claim to ownership. (Kinda implemented via Opt-In feature)
 - [ ] Ask to defer important or special dialogs to another player
 - [ ] Check whether dialog target wants to talk to a particular player-controlled character
 - [ ] Hack the dialog system some more to function like in SWTOR.
