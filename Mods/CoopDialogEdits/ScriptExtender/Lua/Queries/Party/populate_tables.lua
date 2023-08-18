@@ -1,6 +1,9 @@
 function populate_dialog_metadata(character_target, character_source)
   --Add all and controlled party members respectively
 
+  --TODO db_party_all can be expanded to contain UserID, IsControlled, Region and Distance data
+  --but probably not much performance to be gained.
+
   --If distance preference is toggled, populate dbs only with characters within earshot
   if IsSpellActive(GetHostCharacter(), "DialogPreferenceDistance") ~= 1 then
     for _,entry in pairs(Osi.DB_Players:Get(nil)) do

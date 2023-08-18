@@ -7,7 +7,7 @@ Ext.Require("Calls/Randomizer/getwinner.lua")
 Ext.Require("Calls/Dialog/manual_dialog.lua")
 
 Ext.Require("Queries/Dialog/check_target.lua")
-Ext.Require("Queries/Dialog/populate_tables.lua")
+Ext.Require("Queries/Party/populate_tables.lua")
 
 Ext.Require("Utils/custom_std.lua")
 
