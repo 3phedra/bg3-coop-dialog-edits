@@ -1,5 +1,5 @@
 {
-    "RequiredVersion": 1,
+	"RequiredVersion": 1,
 	"ModTable": "CoopDialogEdits",
 	"FeatureFlags": ["Lua","OsirisExtensions"]
 }

@@ -13,26 +13,26 @@ function dummyfunc(var1, var2)
 end
 
 function rawcomps()
-  local char = Ext.GetCharacter(GetHostCharacter())
+	local char = Ext.GetCharacter(GetHostCharacter())
 	--Crashes. Dont do it :D
-  print(_D(char:GetAllRawComponents()))
+	print(_D(char:GetAllRawComponents()))
 	return
 end
 
 function list_party()
-  print(printTable(Osi.DB_Players:Get(nil)))
+	print(printTable(Osi.DB_Players:Get(nil)))
 	return
 end
 
 function stage_party()
-    Ext.Utils.PrintWarning("Dun goofed, have we?")
-    for _,character in pairs(Osi.DB_Players:Get(nil)) do SetOnStage(character[1],1) end
-    return
+	Ext.Utils.PrintWarning("Dun goofed, have we?")
+	for _, character in pairs(Osi.DB_Players:Get(nil)) do SetOnStage(character[1], 1) end
+	return
 end
 
 function roll_stats()
 	Ext.Utils.PrintWarning("\nRoll stats:")
-    print(printTable(db_count_dlg_roll_winner))
+	print(printTable(db_count_dlg_roll_winner))
 	Ext.Utils.PrintWarning("\nCurrent fairness mods:")
 	print(printTable(db_mod_dlg_roll_fairness))
 	return
@@ -41,11 +41,11 @@ end
 function query_dialogs(target)
 	--TODO still have to find out how to get special character based dialogs
 	Ext.Utils.PrintWarning("Singular dialog entries:")
-	print(printTable(Osi.DB_Dialogs:Get(target,nil)))
+	print(printTable(Osi.DB_Dialogs:Get(target, nil)))
 	Ext.Utils.PrintWarning("Two dialog entries:")
-	print(printTable(Osi.DB_Dialogs:Get(target,nil,nil)))
+	print(printTable(Osi.DB_Dialogs:Get(target, nil, nil)))
 	Ext.Utils.PrintWarning("Three dialog entries:")
-	print(printTable(Osi.DB_Dialogs:Get(target,nil,nil,nil)))
+	print(printTable(Osi.DB_Dialogs:Get(target, nil, nil, nil)))
 end
 
 function bug_fixer(bug)
