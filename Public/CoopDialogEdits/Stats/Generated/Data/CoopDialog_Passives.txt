@@ -1,0 +1,57 @@
+new entry "COOPDIALOGVANILLA"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StackId" "COOPDIALOGVANILLA"
+data "StatusPropertyFlags" "DisablePortraitIndicator;IgnoreResting"
+
+new entry "COOPDIALOGRANDOM"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StackId" "COOPDIALOGRANDOM"
+data "StatusPropertyFlags" "DisablePortraitIndicator;IgnoreResting"
+
+new entry "COOPDIALOGFOLLOWERS"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StackId" "COOPDIALOGFOLLOWERS"
+data "StatusPropertyFlags" "DisablePortraitIndicator;IgnoreResting"
+
+new entry "CoopDialogPassiveVanilla"
+type "PassiveData"
+data "DisplayName" "e06e77fb-b1e1-405d-85d7-079d94dbaf5f"
+data "Description" "ab0cf122-3c0b-4604-a7b9-42cfd5b63daa"
+data "Icon" "Action_IntimidatingPresence"
+data "Properties" "IsToggled;ToggledDefaultAddToHotbar"
+data "Boosts" "COOPDIALOGVANILLA()"
+data "ToggleOnFunctors" "ApplyStatus(COOPDIALOGVANILLA,100,-1)"
+data "ToggleOffFunctors" "RemoveStatus(COOPDIALOGVANILLA)"
+data "ToggleGroup" "CoopDialog"
+
+new entry "CoopDialogPassiveRandom"
+type "PassiveData"
+data "DisplayName" "f8764c93-a828-45e4-ad5f-4c05ab168054"
+data "Description" "2224fe33-929e-4f43-9904-83d62f40c474"
+data "Icon" "Action_IntimidatingPresence"
+data "Properties" "IsToggled;ToggledDefaultAddToHotbar"
+data "Boosts" "COOPDIALOGRANDOM()"
+data "ToggleOnFunctors" "ApplyStatus(COOPDIALOGRANDOM,100,-1)"
+data "ToggleOffFunctors" "RemoveStatus(COOPDIALOGRANDOM)"
+data "ToggleGroup" "CoopDialog"
+
+new entry "CoopDialogPassiveFollowers"
+type "PassiveData"
+data "DisplayName" "3015a606-afbc-4d80-bb54-6cea40614615"
+data "Description" "8a8f79d2-3072-4e73-ba23-f5f52517337c"
+data "Icon" "Action_IntimidatingPresence"
+data "Properties" "IsToggled;ToggledDefaultAddToHotbar"
+data "Boosts" "COOPDIALOGFOLLOWERS()"
+data "ToggleOnFunctors" "ApplyStatus(COOPDIALOGFOLLOWERS,100,-1)"
+data "ToggleOffFunctors" "RemoveStatus(COOPDIALOGFOLLOWERS)"
+data "ToggleGroup" "CoopDialogFollowers"
+
+
+
+
+
+
+
