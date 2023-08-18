@@ -1,3 +1,4 @@
+--TODO would initializing the dbs with values and check for string instead of nil be faster? (Doubt)
 db_party_players = {}
 db_party_all = {}
 db_camp_characters = {}
@@ -36,6 +37,7 @@ function cleanup()
     db_userids = {}
     db_dialog_competitors = {}
     db_camp_characters = {}
+    --Persist these tables for the session:
     --db_count_dlg_roll_winner = {}
     --db_mod_dlg_roll_fairness = {}
     db_characters_want_dialog = {}

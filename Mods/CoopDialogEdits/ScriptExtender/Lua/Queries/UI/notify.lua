@@ -12,8 +12,8 @@ function notify_roll_result()
 				own_roll = roll_result
 			end
 		end
-
-		msg = ("Dialog leader: " .. roll_winner .. " rolled " .. win_roll .. ". You rolled " .. own_roll .. ".")
+		--String building is expensive... maybe dont do this if performance ever gets critical
+		--msg = ("Dialog leader: " .. roll_winner .. " rolled " .. win_roll .. ". You rolled " .. own_roll .. ".")
 		--ShowNotification(character, msg)
 	end
 	print("Roll won by " .. roll_winner .. " with " .. win_roll)

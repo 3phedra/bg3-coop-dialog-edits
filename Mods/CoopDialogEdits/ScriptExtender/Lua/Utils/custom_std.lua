@@ -28,6 +28,10 @@ function spairs(t, order)
 	end
 end
 
+function sorted_pairs(table)
+  return spairs(table, function(t,a,b) return t[b] < t[a] end)
+end
+
 function elementIterator (collection)
 
    local index = 0
