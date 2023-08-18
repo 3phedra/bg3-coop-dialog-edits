@@ -15,37 +15,21 @@ function manual_restart_dialog(character_source,character_target)
 
 	table.insert(dialog_listener,chosen_owner)
 
-	--TODO Make this more elegant lol
-	if db_party_all[1] ~= nil and db_party_all[1] ~= chosen_owner and db_party_all[1] ~= character_target then
-		table.insert(dialog_listener,db_party_all[1])
-	else
-		table.insert(dialog_listener,nulluser)
+	local table_index = 1
+
+	for character in elementIterator(db_party_all) do
+		if character ~= nil and character ~= chosen_owner and character ~= character_target then
+			table.insert(dialog_listener,character)
+		end
 	end
-	if db_party_all[2] ~= nil and db_party_all[2] ~= chosen_owner and db_party_all[2] ~= character_target then
-		table.insert(dialog_listener,db_party_all[2])
-	else
-		table.insert(dialog_listener,nulluser)
+
+	for i = #dialog_listener+1,5 do
+		dialog_listener[i] = nulluser
 	end
-	if db_party_all[3] ~= nil and db_party_all[3] ~= chosen_owner and db_party_all[3] ~= character_target then
-		table.insert(dialog_listener,db_party_all[3])
-	else
-		table.insert(dialog_listener,nulluser)
-	end
-	if db_party_all[4] ~= nil and db_party_all[4] ~= chosen_owner and db_party_all[4] ~= character_target then
-		table.insert(dialog_listener,db_party_all[4])
-	else
-		table.insert(dialog_listener,nulluser)
-	end
-	if db_party_all[5] ~= nil and db_party_all[5] ~= chosen_owner and db_party_all[5] ~= character_target then
-		table.insert(dialog_listener,db_party_all[5])
-	else
-		table.insert(dialog_listener,nulluser)
-	end
+
 	--Initiate determined dialog with dialog target and new dialog owner in speaker slot 1, add party in other slots and fill remaining slots with a null user
-	--TODO 1 and 23232 should be OUT values, not inputs, check if it matters at all
-	--Will still trigger dialog_started event function, but the function shouldn't have to do anything further.
+	--Will still trigger dialog_started event function, but the function shouldn't have to do anything.
 	StartDialog_Internal(chosen_dialog, 0, character_target, dialog_listener[1], dialog_listener[2], dialog_listener[3], dialog_listener[4], dialog_listener[5], 23232)
-	--
 
 	return
 end
