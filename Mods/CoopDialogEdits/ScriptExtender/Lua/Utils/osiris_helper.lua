@@ -25,14 +25,14 @@ function list_party()
 end
 
 function stage_party()
-  Ext.Utils.PrintWarning("Dun goofed, have we?")
-  for _,character in pairs(Osi.DB_Players:Get(nil)) do SetOnStage(character,1) end
-	return
+    Ext.Utils.PrintWarning("Dun goofed, have we?")
+    for _,character in pairs(Osi.DB_Players:Get(nil)) do SetOnStage(character[1],1) end
+    return
 end
 
 function roll_stats()
 	Ext.Utils.PrintWarning("\nRoll stats:")
-  print(printTable(db_count_dlg_roll_winner))
+    print(printTable(db_count_dlg_roll_winner))
 	Ext.Utils.PrintWarning("\nCurrent fairness mods:")
 	print(printTable(db_mod_dlg_roll_fairness))
 	return
@@ -50,7 +50,8 @@ end
 
 function bug_fixer(bug)
 	--TODO use BG3SE's JSON for this. I suck at lua. Or maybe it works?
-	bug_db = {1 = {"Stuck unstaged", stage_party}, 2 = {"Dummy", dummyfunc}}
+	--bug_db = {1 = {"Stuck unstaged", stage_party}, 2 = {"Dummy", dummyfunc}}
+	bug_db = {}
 	if bug == nil then
 		Ext.Utils.PrintWarning("Bug DB contains:")
 		print(printTable(b))

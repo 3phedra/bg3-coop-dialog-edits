@@ -136,7 +136,7 @@ data "Boosts" "DialogListenerOptIn()"
 data "ToggleOnFunctors" "ApplyStatus(DialogListenerOptIn,100,-1)"
 data "ToggleOffFunctors" "RemoveStatus(DialogListenerOptIn)"
 
-new entry "CoopDialogPassiveDisable"
+new entry "CoopDialogPassivePreferenceDisable"
 type "PassiveData"
 data "DisplayName" "c50d8cd1-3e03-4a3c-8415-11b03b4a97cf"
 data "Description" "d55fdd58-064b-49fb-8b0f-293aeffdeb3b"
