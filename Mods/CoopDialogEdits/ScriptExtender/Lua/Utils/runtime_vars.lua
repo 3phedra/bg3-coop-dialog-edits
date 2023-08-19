@@ -1,8 +1,5 @@
 --TODO would initializing the dbs with values and check for string instead of nil be faster? (Doubt)
 
-region_dlg = ""
-is_region_camp = 0
-
 db_party_players                    = {}
 db_party_all                        = {}
 db_userids                          = {}
@@ -34,6 +31,9 @@ character_dlg_roll_winner           = "NULL_00000000-0000-0000-0000-000000000000
 
 region_dlg                          = ""
 is_region_camp                      = 0
+mod_info                            = ""
+event_table                         = {}
+
 
 function cleanup()
   db_party_players                    = {}
@@ -68,4 +68,6 @@ function cleanup()
 
   region_dlg                          = ""
   is_region_camp                      = 0
+  event_table                         = {}
+
 end

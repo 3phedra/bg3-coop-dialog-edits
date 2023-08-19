@@ -54,32 +54,59 @@ function printTable(t)
 	local printTable_cache = {}
 	local function sub_printTable(t, indent)
 		if (printTable_cache[tostring(t)]) then
-			print(indent .. "*" .. tostring(t))
+			Ext.Utils.PrintWarning(indent .. "*" .. tostring(t))
 		else
 			printTable_cache[tostring(t)] = true
 			if (type(t) == "table") then
 				for pos, val in pairs(t) do
 					if (type(val) == "table") then
-						print(indent .. "[" .. pos .. "] => " .. tostring(t) .. " {")
+						Ext.Utils.PrintWarning(indent .. "[" .. pos .. "] => " .. tostring(t) .. " {")
 						sub_printTable(val, indent .. string.rep(" ", string.len(pos) + 8))
-						print(indent .. string.rep(" ", string.len(pos) + 6) .. "}")
+						Ext.Utils.PrintWarning(indent .. string.rep(" ", string.len(pos) + 6) .. "}")
 					elseif (type(val) == "string") then
-						print(indent .. "[" .. pos .. '] => "' .. val .. '"')
+						Ext.Utils.PrintWarning(indent .. "[" .. pos .. '] => "' .. val .. '"')
 					else
-						print(indent .. "[" .. pos .. "] => " .. tostring(val))
+						Ext.Utils.PrintWarning(indent .. "[" .. pos .. "] => " .. tostring(val))
 					end
 				end
 			else
-				print(indent .. tostring(t))
+				Ext.Utils.PrintWarning(indent .. tostring(t))
 			end
 		end
 	end
 
 	if (type(t) == "table") then
-		print(tostring(t) .. " {")
+		Ext.Utils.PrintWarning(tostring(t) .. " {")
 		sub_printTable(t, "  ")
-		print("}")
+		Ext.Utils.PrintWarning("}")
 	else
 		sub_printTable(t, "  ")
 	end
+  Ext.Utils.PrintWarning("\n")
+end
+
+function dump_table(o)
+  if type(o) == 'table' then
+     local s = '{\n'
+     for k,v in pairs(o) do
+        if type(k) ~= 'number' then k = '"'..k..'"' end
+        s = s .. '                        ['..k..'] = ' .. dump_table(v) .. ',\n'
+     end
+     return s .. '                        }\n'
+  else
+     return tostring(o)
+  end
+end
+
+function dump_table_inline(o)
+  if type(o) == 'table' then
+     local s = '{'
+     for k,v in pairs(o) do
+        if type(k) ~= 'number' then k = '"'..k..'"' end
+        s = s .. '['..k..'] = ' .. dump_table(v) .. ',\n'
+     end
+     return s .. '                }'
+  else
+     return tostring(o)
+  end
 end

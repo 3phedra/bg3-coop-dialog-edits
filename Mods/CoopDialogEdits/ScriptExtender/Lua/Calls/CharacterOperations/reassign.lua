@@ -4,7 +4,16 @@ function reassign_follower(userid_new, userid_old, character_target)
   character_reassigned_follower = character_target
   character_reassigned_follower_owner = db_userids[userid_old]
   --Temporarily assign follower to new owner for dialog
+
   AssignToUser(userid_new, character_target)
+
+  local event_name = "reassign_follower"
+  local event_state = "run"
+  local event_operation = "AssignToUser"
+  local event_args = userid_new .. ", " .. character_target
+  local event_data = "..."
+
+  print_log(event_name, event_state, event_operation, event_args, event_data)
 
   return
 end
