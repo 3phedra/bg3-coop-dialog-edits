@@ -4,7 +4,9 @@
 
 ## About
 
-This mod is a heavily work-in-progress adjustment to multiplayer dialog handling in Baldurs Gate 3. Expect bugs, potentially game-breaking!
+This mod is a heavily work-in-progress adjustment to multiplayer dialog handling in Baldurs Gate 3. Expect bugs, and potentially game-breaking ones at that! 
+
+My intention was to make my own co-op sessions a little less chaotic since I found it quite the bother how chaotic things get when the party doesn't stick together at all times.
 
 Features planned and present currently include
 
@@ -24,8 +26,9 @@ Larian pls.
 ## Requirements
 
 This mod requires [BG3SE](https://github.com/Norbyte/bg3se) by Norbyte. 
+
 Thank you Norbyte.
 
 ## Installation
 
-I'll get around to making a .pak eventually.
+Install the .pak however you usually install .paks, I recommend BG3MM. Or use the loose files directly in the Data directory.

@@ -1,0 +1,15 @@
+BG3 Co-op Dialog Edits
+
+Disclaimer:
+This mod is a heavily work-in-progress adjustment to multiplayer dialog handling in Baldurs Gate 3. Expect bugs, and potentially game-breaking ones at that! 
+
+About:
+My intention was to make my own co-op sessions a little less chaotic since I found it quite the bother how chaotic things get when the party doesn't stick together at all times. The main feature is that all characters will be forced into any triggered dialog right at the start, so that nothing will be missed by not listening in. However, there is an option to limit this feature to earshot range.
+
+The mod currently features toggleable passives, (some of which haven't been properly implemented yet), to enable essentially rolling for dialog leadership when a dialog is triggered. Dialog leadership can be claimed via a fully random roll, charisma based roll, initiative, or via opt-in. The opt-in feature also allows to defer essentially all dialogs to a selected character, if this is the only one having opted-in.
+Further, the mod includes a fairness modifier so that with each lost roll, you get an advantage on the next. This will also be made a toggle eventually.
+
+However, most of the newer additions to the mod haven't even been tested, so it is what it is until I dare call it actually, eventually, hopefully, release ready. 
+
+Requirements:
+Almost everything depends on access to the Osiris script system, so you'll need Norbyte's Script Extender.
