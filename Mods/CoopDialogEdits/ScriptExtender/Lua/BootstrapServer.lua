@@ -43,4 +43,7 @@ if is_debug then
   Ext.RegisterConsoleCommand("GetDialogs", query_dialogs)
   --Scope creep
   Ext.RegisterConsoleCommand("TheCommonBugFixer", fix_bug)
+
+  --Ext.Utils.GenerateIdeHelpers()
+
 end

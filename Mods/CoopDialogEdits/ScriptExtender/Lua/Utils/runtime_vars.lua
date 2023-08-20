@@ -34,8 +34,13 @@ is_region_camp                      = 0
 mod_info                            = ""
 event_table                         = {}
 
+startTime                           = 0
+endTime                             = 0
+
 
 function cleanup()
+  --Ext.Utils.GenerateIdeHelpers()
+
   db_party_players                    = {}
   db_party_all                        = {}
   db_userids                          = {}
@@ -69,4 +74,6 @@ function cleanup()
   region_dlg                          = ""
   is_region_camp                      = 0
   event_table                         = {}
+  startTime                           = 0
+  endTime                             = 0
 end

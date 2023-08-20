@@ -103,6 +103,9 @@ function dialog_started(dialog_UUID, dialog_ID)
 
   print_log(function_name, function_operation, function_args, function_data)
 
+  endTime = Ext.Utils.MonotonicTime()
+  print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
+
   return
 end
 
@@ -186,7 +189,7 @@ function automated_dialog_started(dialog_UUID, dialog_ID)
 
     function_operation = "return"
     function_args = nil
-    function_data = nil
+    function_data = tostring(Ext.Utils.MonotonicTime() - startTime) .. "ms"
 
     print_log(function_name, function_operation, function_args, function_data)
 

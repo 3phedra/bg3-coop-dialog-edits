@@ -13,6 +13,8 @@ Ext.Require("Utils/custom_std.lua")
 
 --## Osiris event handlers
 function dialog_requested(character_target, character_source)
+  startTime = Ext.Utils.MonotonicTime()
+
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
@@ -49,11 +51,11 @@ function dialog_requested(character_target, character_source)
   function_args =
   "userid_dlg_targetowner ~= userid_dlg_owner and not has_value(db_party_players, character_dlg_target) and has_value(db_party_all, character_dlg_target)"
   function_data = userid_dlg_targetowner ..
-  "," ..
-  userid_dlg_owner ..
-  "," .. character_dlg_target .. "," .. dump_table(db_party_players) .. "," .. dump_table(db_party_all)
+      "," ..
+      userid_dlg_owner ..
+      "," .. character_dlg_target .. "," .. dump_table(db_party_players) .. "," .. dump_table(db_party_all)
   function_result = userid_dlg_targetowner ~= userid_dlg_owner and not has_value(db_party_players, character_dlg_target) and
-  has_value(db_party_all, character_dlg_target)
+      has_value(db_party_all, character_dlg_target)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -126,7 +128,7 @@ function dialog_requested(character_target, character_source)
     "check_if_target_is_vendor(character_dlg_target) and not check_if_target_is_special(character_dlg_target)"
     function_data = character_dlg_target
     function_result = check_if_target_is_vendor(character_dlg_target) and
-    not check_if_target_is_special(character_dlg_target)
+        not check_if_target_is_special(character_dlg_target)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 

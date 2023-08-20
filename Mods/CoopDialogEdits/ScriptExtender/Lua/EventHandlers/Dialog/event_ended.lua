@@ -85,8 +85,8 @@ function dialog_ended(dialog_UUID, dialog_ID)
     function_args = ""
     function_data = nil
 
+    
     print_log(function_name, function_operation, function_args, function_data)
-
     return
   end
 end

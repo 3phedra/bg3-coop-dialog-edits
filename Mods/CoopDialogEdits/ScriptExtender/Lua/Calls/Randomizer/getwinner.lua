@@ -133,7 +133,7 @@ function determine_dialog_winner(characters, character_owner)
   "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1 and db_characters_want_dialog[1] ~= nil"
   function_data = GetHostCharacter() .. "," .. "DialogPreferenceOptIn" .. "," .. tostring(db_characters_want_dialog[1])
   function_result = HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1 and
-  db_characters_want_dialog[1] ~= nil
+      db_characters_want_dialog[1] ~= nil
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

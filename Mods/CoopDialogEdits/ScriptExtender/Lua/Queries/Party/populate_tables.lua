@@ -73,13 +73,13 @@ function populate_dialog_metadata(character_target, character_source)
       function_args =
       "GetDistanceTo(character_target, character[1]) <= 35.0 and GetRegion(character[1]) == GetRegion(character_source)"
       function_data = character_target ..
-      "," ..
-      character[1] ..
-      "," ..
-      GetDistanceTo(character_target, character[1]) ..
-      "," .. GetRegion(character[1]) .. "," .. GetRegion(character_source)
+          "," ..
+          character[1] ..
+          "," ..
+          GetDistanceTo(character_target, character[1]) ..
+          "," .. GetRegion(character[1]) .. "," .. GetRegion(character_source)
       function_result = GetDistanceTo(character_target, character[1]) <= 35.0 and
-      GetRegion(character[1]) == GetRegion(character_source)
+          GetRegion(character[1]) == GetRegion(character_source)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 

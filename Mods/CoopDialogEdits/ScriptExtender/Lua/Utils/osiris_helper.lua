@@ -20,8 +20,9 @@ function rawcomps()
 end
 
 function list_party()
+  print("Reached")
   print(printTable(Osi.DB_Players:Get(nil)))
-  return
+  return "test?"
 end
 
 function stage_party()
@@ -58,5 +59,10 @@ function bug_fixer(bug)
   else
     bug_db[bug][2]()
   end
+  return
+end
+
+function give_me_the_gist_of_it()
+  --TODO log only relevant results
   return
 end
