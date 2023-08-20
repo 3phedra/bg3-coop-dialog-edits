@@ -1,42 +1,74 @@
 function check_if_target_is_vendor(character_target)
-  local event_name = "check_if_target_is_vendor"
-  local event_state = "return"
-  local event_operation = "unimplemented"
-  local event_args = nil
-  local event_data = false
+  local function_name = "check_if_target_is_vendor"
+  local function_operation = "called"
+  local function_args = "character_target"
+  local function_data = character_target
 
-  print_log(event_name, event_state, event_operation, event_args, event_data)
-	--TODO find a query that shows if target is vendor
-	--If all else fails, populate a new DB with RequestTrade event targets so that only the first dialog locks the whole party
-	return false
+  print_log(function_name, function_operation, function_args, function_data)
+
+  --TODO find a query that shows if target is vendor
+  --If all else fails, populate a new DB with RequestTrade event targets so that only the first dialog locks the whole party
+
+  function_operation = "return"
+  function_args = nil
+  function_data = false
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  return false
 end
 
 function check_if_target_is_special(character_target)
-	--TODO find queries that determine whether target shouldn't be re-assignable outside of being vendors
-	--TODO if target has more than one dialog, check if these target a particular party member
-	local target_available_dialogs = {}
+  local function_name = "check_if_target_is_special"
+  local function_operation = "called"
+  local function_args = "character_target"
+  local function_data = character_target
 
-	for _,entry in pairs(Osi.DB_Dialogs:Get(character_target,nil,nil)) do table.insert(target_available_dialogs,entry[1]) end
+  print_log(function_name, function_operation, function_args, function_data)
 
-  local event_name = "check_if_target_is_special"
-  local event_state = "query_db"
-  local event_operation = "Osi.DB_Dialogs:Get"
-  local event_args = character_target .. ", " .. "nil" .. ", " .. "nil"
-  local event_data = dump_table(target_available_dialogs)
+  --TODO find queries that determine whether target shouldn't be re-assignable outside of being vendors
+  --TODO if target has more than one dialog, check if these target a particular party member
 
-  print_log(event_name, event_state, event_operation, event_args, event_data)
+  local target_available_dialogs = {}
 
-  event_name = "check_if_target_is_special"
-  event_state = "check_available_dialogs"
-  event_operation = "is > 1"
-  event_args = "#target_available_dialogs"
-  event_data = #target_available_dialogs
 
-  print_log(event_name, event_state, event_operation, event_args, event_data)
+  function_operation = "iterate"
+  function_args = "Osi.DB_Dialogs:Get(character_target,nil,nil)"
+  function_data = dump_table(Osi.DB_Dialogs:Get(character_target, nil, nil))
 
-	if #target_available_dialogs > 1 then
-		return true
-	else
-		return false
-	end
+  print_log(function_name, function_operation, function_args, function_data)
+
+  for _, entry in pairs(Osi.DB_Dialogs:Get(character_target, nil, nil)) do table.insert(target_available_dialogs,
+      entry[1]) end
+
+  function_operation = "assign"
+  function_args = "target_available_dialogs"
+  function_data = dump_table(target_available_dialogs)
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  function_operation = "compare"
+  function_args = "#target_available_dialogs > 1"
+  function_data = dump_table(target_available_dialogs)
+  function_result = #target_available_dialogs > 1
+
+  print_log(function_name, function_operation, function_args, function_data, function_result)
+
+  if #target_available_dialogs > 1 then
+    function_operation = "return"
+    function_args = nil
+    function_data = false
+
+    print_log(function_name, function_operation, function_args, function_data)
+
+    return true
+  else
+    function_operation = "return"
+    function_args = nil
+    function_data = false
+
+    print_log(function_name, function_operation, function_args, function_data)
+
+    return false
+  end
 end

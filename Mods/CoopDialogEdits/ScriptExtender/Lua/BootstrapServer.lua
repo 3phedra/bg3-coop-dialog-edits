@@ -2,7 +2,8 @@ Ext.Require("Utils/runtime_vars.lua")
 Ext.Require("Utils/logger.lua")
 
 mod_info = Ext.Utils.GetModInfo(ModuleUUID)
-Ext.Utils.Print(string.format("[%s]: Dialog injector initializing. [%s]", mod_info.Name, Ext.IsClient() and "CLIENT" or "SERVER"))
+Ext.Utils.Print(string.format("[%s]: Dialog injector initializing. [%s]", mod_info.Name,
+  Ext.IsClient() and "CLIENT" or "SERVER"))
 
 skip_register = false
 
@@ -13,16 +14,18 @@ if not skip_register then
 
   Ext.Osiris.RegisterListener("DialogStartRequested", 2, "before", dialog_requested)
   Ext.Osiris.RegisterListener("DialogStarted", 2, "before", dialog_started)
-  Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
   Ext.Osiris.RegisterListener("DialogEnded", 2, "after", dialog_ended)
-  Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
+
+  --Automated dialogs are rather annoying
+  --Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
+  --Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
 
   Ext.Utils.PrintWarning("Dialog scripts ready.")
 end
 
 --TODO check if BG3SE runs with some sort of debug flag.
 --For now it's so debuggy that debugginess is hardcoded still.
-local is_debug = false
+is_debug = false
 
 if is_debug then
   Ext.Require("Utils/custom_std.lua")
@@ -40,5 +43,4 @@ if is_debug then
   Ext.RegisterConsoleCommand("GetDialogs", query_dialogs)
   --Scope creep
   Ext.RegisterConsoleCommand("TheCommonBugFixer", fix_bug)
-
 end

@@ -69,5 +69,4 @@ function cleanup()
   region_dlg                          = ""
   is_region_camp                      = 0
   event_table                         = {}
-
 end

@@ -1,9 +1,7 @@
 function register_passive_spell()
-  local event_name = "dialog_ended"
-  local event_state = ""
-  local event_operation = ""
-  local event_args = nil
-  local event_data = nil
+  local function_name = "detach_character"
+  local function_operation = "called"
+  print_log(function_name, function_operation)
   
   --TODO What do the args mean?
   AddBoosts(GetHostCharacter(), "", "", "")
