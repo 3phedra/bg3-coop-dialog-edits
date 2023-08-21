@@ -1,11 +1,5 @@
 function notify_roll_result()
   --Notify players of roll winner and their own result
-  local function_name = "determine_dialog_with_target"
-  local function_operation = "called"
-  local function_args = nil
-  local function_data = nil
-
-  print_log(function_name, function_operation, function_args, function_data)
 
   Ext.Utils.PrintError("Not implemented")
 
@@ -21,5 +15,8 @@ function notify_roll_result()
     --msg = ("Dialog leader: " .. roll_winner .. " rolled " .. win_roll .. ". You rolled " .. own_roll .. ".")
     --ShowNotification(character, msg)
   end
+
   print("Roll won by " .. roll_winner .. " with " .. win_roll)
+  
+  return
 end
