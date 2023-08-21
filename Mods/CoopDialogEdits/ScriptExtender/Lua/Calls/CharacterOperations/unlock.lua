@@ -9,7 +9,6 @@ function unlock_party_from_trade(trader1, trader2, trademode, var)
     end
   end
 end
-
 function defer_dialog_from_messagebox(var1, var2)
   return
   --TODO major todo

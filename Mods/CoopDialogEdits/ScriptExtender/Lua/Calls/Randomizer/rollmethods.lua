@@ -4,17 +4,14 @@ function check_reassignment_requested(character_target, character_source)
   if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1 then
     return false
   end
-
   if is_region_camp == 1 then
     return false
   end
-
   if has_value(db_camp_characters, character_target) then
     if HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 0 then
       return false
     end
   end
-
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 then
     for playercharacter in elementIterator(db_party_players) do
       if HasActiveStatus(playercharacter, "DialogListenerOptIn") == 1 then
@@ -25,12 +22,11 @@ function check_reassignment_requested(character_target, character_source)
       db_characters_want_dialog[1] = character_source
     end
   end
-
   if HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil then
     reassignment_requested = true
   else
     reassignment_requested = false
   end
-
+  print_log(event_name, event_state, event_operation, event_args, event_data)
   return reassignment_requested
 end

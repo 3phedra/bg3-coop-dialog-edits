@@ -7,18 +7,14 @@ function has_value(tab, val)
   end
   return false
 end
-
 function spairs(t, order)
   local keys = {}
-
   for k in pairs(t) do keys[#keys + 1] = k end
-
   if order then
     table.sort(keys, function(a, b) return order(t, a, b) end)
   else
     table.sort(keys)
   end
-
   local i = 0
   return function()
     i = i + 1
@@ -27,20 +23,15 @@ function spairs(t, order)
     end
   end
 end
-
 function sorted_pairs(table)
   return spairs(table, function(t, a, b) return t[b] < t[a] end)
 end
-
 function elementIterator(collection)
   local index = 0
   local count = #collection
-
   -- The closure function is returned
-
   return function()
     index = index + 1
-
     if index <= count
     then
       -- return the current element of the iterator
@@ -48,7 +39,6 @@ function elementIterator(collection)
     end
   end
 end
-
 --## Random helper console commands
 function printTable(t)
   local printTable_cache = {}
@@ -74,7 +64,6 @@ function printTable(t)
       end
     end
   end
-
   if (type(t) == "table") then
     Ext.Utils.PrintWarning(tostring(t) .. " {")
     sub_printTable(t, "  ")
@@ -84,7 +73,6 @@ function printTable(t)
   end
   Ext.Utils.PrintWarning("\n")
 end
-
 function dump_table(o)
   if type(o) == 'table' then
     local s = ''
@@ -97,7 +85,6 @@ function dump_table(o)
     return tostring(o)
   end
 end
-
 function dump_table_inline(o)
   if type(o) == 'table' then
     local s = ''

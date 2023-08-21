@@ -1,5 +1,4 @@
 Ext.Require("Utils/custom_std.lua")
-
 function roll_for_dialog(method, characters)
   local roll_winner
   --TODO Add more methods
@@ -28,11 +27,9 @@ function roll_for_dialog(method, characters)
   elseif method == "vanilla" then
     print("Why was this code reached???")
   end
-
   --Sort competitor table lowest to highest roll and pick the last entry as winner
   for character, roll_result in spairs(db_dialog_competitors, function(t, a, b) return t[b] > t[a] end) do
     roll_winner = character
   end
-
   return roll_winner
 end
