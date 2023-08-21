@@ -20,8 +20,8 @@ if not skip_register then
   Ext.Osiris.RegisterListener("DialogEnded", 2, "after", dialog_ended)
 
   --Automated dialogs are rather annoying
-  --Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
-  --Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
+  Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
+  Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
 
   Ext.Utils.PrintWarning("Dialog scripts ready.")
 end

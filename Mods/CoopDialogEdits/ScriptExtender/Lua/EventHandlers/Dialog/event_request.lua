@@ -29,7 +29,7 @@ function dialog_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceDisable') == 1"
   function_data = GetHostCharacter() .. "," .. "DialogPreferenceDisable"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -54,8 +54,8 @@ function dialog_requested(character_target, character_source)
       "," ..
       userid_dlg_owner ..
       "," .. character_dlg_target .. "," .. dump_table(db_party_players) .. "," .. dump_table(db_party_all)
-  function_result = userid_dlg_targetowner ~= userid_dlg_owner and not has_value(db_party_players, character_dlg_target) and
-      has_value(db_party_all, character_dlg_target)
+  function_result = tostring(userid_dlg_targetowner ~= userid_dlg_owner and not has_value(db_party_players, character_dlg_target) and
+      has_value(db_party_all, character_dlg_target))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -104,7 +104,7 @@ function dialog_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "check_reassignment_requested(character_dlg_target, character_dlg_owner)"
   function_data = character_dlg_target .. "," .. character_dlg_owner
-  function_result = check_reassignment_requested(character_dlg_target, character_dlg_owner)
+  function_result = tostring(check_reassignment_requested(character_dlg_target, character_dlg_owner))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -127,8 +127,8 @@ function dialog_requested(character_target, character_source)
     function_args =
     "check_if_target_is_vendor(character_dlg_target) and not check_if_target_is_special(character_dlg_target)"
     function_data = character_dlg_target
-    function_result = check_if_target_is_vendor(character_dlg_target) and
-        not check_if_target_is_special(character_dlg_target)
+    function_result = tostring(check_if_target_is_vendor(character_dlg_target) and
+        not check_if_target_is_special(character_dlg_target))
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -152,7 +152,7 @@ function dialog_requested(character_target, character_source)
       function_operation = "compare"
       function_args = "character_dlg_new ~= character_dlg_owner"
       function_data = character_dlg_new .. "," .. character_dlg_owner
-      function_result = character_dlg_new ~= character_dlg_owner
+      function_result = tostring(character_dlg_new ~= character_dlg_owner)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 

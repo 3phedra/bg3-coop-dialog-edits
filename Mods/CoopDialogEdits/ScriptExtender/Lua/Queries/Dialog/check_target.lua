@@ -38,8 +38,10 @@ function check_if_target_is_special(character_target)
 
   print_log(function_name, function_operation, function_args, function_data)
 
-  for _, entry in pairs(Osi.DB_Dialogs:Get(character_target, nil, nil)) do table.insert(target_available_dialogs,
-      entry[1]) end
+  for _, entry in pairs(Osi.DB_Dialogs:Get(character_target, nil, nil)) do
+    table.insert(target_available_dialogs,
+      entry[1])
+  end
 
   function_operation = "assign"
   function_args = "target_available_dialogs"
@@ -50,7 +52,7 @@ function check_if_target_is_special(character_target)
   function_operation = "compare"
   function_args = "#target_available_dialogs > 1"
   function_data = dump_table(target_available_dialogs)
-  function_result = #target_available_dialogs > 1
+  function_result = tostring(#target_available_dialogs > 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

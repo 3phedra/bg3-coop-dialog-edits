@@ -19,7 +19,7 @@ function unlock_party_from_trade(trader1, trader2, trademode, var)
     function_operation = "compare"
     function_args = "character ~= trader1"
     function_data = character .. "," .. trader1
-    function_result = character ~= trader1
+    function_result = tostring(character ~= trader1)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 

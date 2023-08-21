@@ -32,7 +32,7 @@ function determine_dialog_with_target(character_source, character_target)
   function_operation = "compare"
   function_args = "not check_if_target_is_special(character_target)"
   function_data = character_target
-  function_result = not check_if_target_is_special(character_target)
+  function_result = tostring(not check_if_target_is_special(character_target))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

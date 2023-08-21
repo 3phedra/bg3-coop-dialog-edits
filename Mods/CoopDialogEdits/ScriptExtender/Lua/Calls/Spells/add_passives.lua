@@ -19,7 +19,7 @@ function register_passive_spell(character)
   function_operation = "compare"
   function_args = "string.sub(character, -36) == character_host"
   function_data = string.sub(character, -36)  .. ", " .. "character_host"
-  function_result = string.sub(character, -36) == character_host
+  function_result = tostring(string.sub(character, -36) == character_host)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

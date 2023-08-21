@@ -46,7 +46,7 @@ function manual_restart_dialog(character_source, character_target)
     function_operation = "compare"
     function_args = "character ~= nil and character ~= chosen_owner and character ~= character_target"
     function_data = character .. "," .. chosen_owner .. "," .. character_target
-    function_result = character ~= nil and character ~= chosen_owner and character ~= character_target
+    function_result = tostring(character ~= nil and character ~= chosen_owner and character ~= character_target)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 

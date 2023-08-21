@@ -58,7 +58,7 @@ function populate_dialog_metadata(character_target, character_source)
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceDistance') ~= 1"
   function_data = GetHostCharacter() .. "," .. "DialogPreferenceDistance"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogPreferenceDistance") ~= 1
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogPreferenceDistance") ~= 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -81,7 +81,7 @@ function populate_dialog_metadata(character_target, character_source)
       function_operation = "compare"
       function_args = "IsControlled(%s) == 1", character[1]
       function_data = character[1]
-      function_result = IsControlled(character[1]) == 1
+      function_result = tostring(IsControlled(character[1]) == 1)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -120,8 +120,8 @@ function populate_dialog_metadata(character_target, character_source)
           "," ..
           GetDistanceTo(character_target, character[1]) ..
           "," .. GetRegion(character[1]) .. "," .. GetRegion(character_source)
-      function_result = GetDistanceTo(character_target, character[1]) <= 35.0 and
-          GetRegion(character[1]) == GetRegion(character_source)
+      function_result = tostring(GetDistanceTo(character_target, character[1]) <= 35.0 and
+        GetRegion(character[1]) == GetRegion(character_source))
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -137,7 +137,7 @@ function populate_dialog_metadata(character_target, character_source)
         function_operation = "compare"
         function_args = "IsControlled(%s) == 1", character[1]
         function_data = character[1]
-        function_result = IsControlled(character[1]) == 1
+        function_result = tostring(IsControlled(character[1]) == 1)
 
         print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -197,7 +197,7 @@ function populate_dialog_metadata(character_target, character_source)
   function_operation = "compare"
   function_args = "string.find(region_dlg, 'camp')"
   function_data = region_dlg .. "," .. "camp"
-  function_result = string.find(region_dlg, "camp")
+  function_result = tostring(string.find(region_dlg, "camp"))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

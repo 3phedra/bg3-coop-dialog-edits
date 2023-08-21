@@ -16,8 +16,8 @@ function dialog_ended(dialog_UUID, dialog_ID)
 
   function_operation = "compare"
   function_args = "DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil"
-  function_data = dialog_ID .. "," .. DialogGetInvolvedPlayer(dialog_ID, 1)
-  function_result = DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil
+  function_data = dialog_ID .. "," .. tostring(DialogGetInvolvedPlayer(dialog_ID, 1))
+  function_result = tostring(DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -25,7 +25,7 @@ function dialog_ended(dialog_UUID, dialog_ID)
     function_operation = "compare"
     function_args = "was_follower_reassigned == 1"
     function_data = was_follower_reassigned
-    function_result = was_follower_reassigned == 1
+    function_result = tostring(was_follower_reassigned == 1)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -51,7 +51,7 @@ function dialog_ended(dialog_UUID, dialog_ID)
     function_operation = "compare"
     function_args = "was_character_owner_reassigned == 1"
     function_data = was_character_owner_reassigned
-    function_result = was_character_owner_reassigned == 1
+    function_result = tostring(was_character_owner_reassigned == 1)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 

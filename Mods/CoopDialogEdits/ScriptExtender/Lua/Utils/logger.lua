@@ -14,6 +14,7 @@ function write_log(log)
 end
 
 function log_formatter(event, operation, args, data, result)
+
   event = string.format("[%s]", tostring(event))
   operation = string.format("   - Operation: %s", tostring(operation))
   args = string.format("       - Params: %s", tostring(args))
@@ -26,7 +27,7 @@ function log_formatter(event, operation, args, data, result)
     table.insert(datatable, string.format("           - data: [Type]: %s [data]: %s", type(entry), entry))
   end
 
-  local result_table = split_string(data)
+  local result_table = split_string(result)
   for entry in elementIterator(result_table) do
     table.insert(resulttable, string.format("               - result: %s", entry))
   end

@@ -17,14 +17,31 @@ function dialog_started(dialog_UUID, dialog_ID)
 
   function_operation = "compare"
   function_args = "DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil"
-  function_data = dialog_ID .. "," .. DialogGetInvolvedPlayer(dialog_ID, 1)
-  function_result = DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil
+  function_data = dialog_ID .. "," .. tostring(DialogGetInvolvedPlayer(dialog_ID, 1))
+  function_result = tostring(DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
     local dialog_owner = DialogGetInvolvedPlayer(dialog_ID, 1)
+
+    function_operation = "compare"
+    function_args = "db_party_all[1] == nil"
+    function_data = db_party_all[1]
+    function_result = tostring(db_party_all[1] == nil)
+
+    print_log(function_name, function_operation, function_args, function_data, function_result)
+
+    if db_party_all[1] == nil then
+      function_operation = "populate_dialog_metadata"
+      function_args = "DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1)"
+      function_data = DialogGetInvolvedNPC(dialog_ID, 1) .. ", " .. DialogGetInvolvedPlayer(dialog_ID, 1)
+
+      print_log(function_name, function_operation, function_args, function_data, function_result)
+
+      populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1))
+    end
 
     function_operation = "assign"
     function_args = "dialog_owner"
@@ -46,7 +63,7 @@ function dialog_started(dialog_UUID, dialog_ID)
       function_operation = "compare"
       function_args = "select(2, SpeakerGetDialog(character, 1)) == nil"
       function_data = character .. "," .. tostring(select(2, SpeakerGetDialog(character, 1)))
-      function_result = select(2, SpeakerGetDialog(character, 1)) == nil
+      function_result = tostring(select(2, SpeakerGetDialog(character, 1)) == nil)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -82,7 +99,7 @@ function dialog_started(dialog_UUID, dialog_ID)
     function_operation = "compare"
     function_args = "is_automated_dialog ~= 1"
     function_data = is_automated_dialog
-    function_result = is_automated_dialog ~= 1
+    function_result = tostring(is_automated_dialog ~= 1)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -103,8 +120,8 @@ function dialog_started(dialog_UUID, dialog_ID)
 
   print_log(function_name, function_operation, function_args, function_data)
 
-  endTime = Ext.Utils.MonotonicTime()
-  print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
+  --endTime = Ext.Utils.MonotonicTime()
+  --print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
 
   return
 end
@@ -123,8 +140,8 @@ function automated_dialog_started(dialog_UUID, dialog_ID)
 
   function_operation = "compare"
   function_args = "DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil"
-  function_data = dialog_ID .. "," .. DialogGetInvolvedPlayer(dialog_ID, 1)
-  function_result = DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil
+  function_data = dialog_ID .. "," .. tostring(DialogGetInvolvedPlayer(dialog_ID, 1))
+  function_result = tostring(DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -156,7 +173,7 @@ function automated_dialog_started(dialog_UUID, dialog_ID)
       function_operation = "compare"
       function_args = "IsControlled(%s) == 1", entry[1]
       function_data = entry[1]
-      function_result = IsControlled(entry[1]) == 1
+      function_result = tostring(IsControlled(entry[1]) == 1)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 

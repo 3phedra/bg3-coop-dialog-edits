@@ -14,21 +14,21 @@ function roll_for_dialog(method, characters)
   function_operation = "compare"
   function_args = "method == 'random'"
   function_data = method
-  function_result = method == "random"
+  function_result = tostring(method == "random")
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   function_operation = "compare"
   function_args = "method == 'charisma'"
   function_data = method
-  function_result = method == "charisma"
+  function_result = tostring(method == "charisma")
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   function_operation = "compare"
   function_args = "method == 'initiative'"
   function_data = method
-  function_result = method == "initiative"
+  function_result = tostring(method == "initiative")
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -44,7 +44,7 @@ function roll_for_dialog(method, characters)
       function_operation = "compare"
       function_args = "db_mod_dlg_roll_fairness[%s] == nil", character
       function_data = db_mod_dlg_roll_fairness[character]
-      function_result = db_mod_dlg_roll_fairness[character] == nil
+      function_result = tostring(db_mod_dlg_roll_fairness[character] == nil)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 

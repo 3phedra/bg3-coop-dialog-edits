@@ -12,7 +12,7 @@ function check_reassignment_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogMethodVanilla') == 1"
   function_data = GetHostCharacter() .. "," .. "DialogMethodVanilla"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -29,7 +29,7 @@ function check_reassignment_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "is_region_camp == 1"
   function_data = is_region_camp
-  function_result = is_region_camp == 1
+  function_result = tostring(is_region_camp == 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -45,7 +45,7 @@ function check_reassignment_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "has_value(db_camp_characters, character_target)"
   function_data = dump_table(db_camp_characters) .. "," .. character_target
-  function_result = has_value(db_camp_characters, character_target)
+  function_result = tostring(has_value(db_camp_characters, character_target))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -53,7 +53,7 @@ function check_reassignment_requested(character_target, character_source)
     function_operation = "compare"
     function_args = "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceFollowers') == 0"
     function_data = GetHostCharacter() .. "," .. "DialogPreferenceFollowers"
-    function_result = HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 0
+    function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 0)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -71,7 +71,7 @@ function check_reassignment_requested(character_target, character_source)
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1"
   function_data = GetHostCharacter() .. "," .. "DialogPreferenceOptIn"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -86,7 +86,7 @@ function check_reassignment_requested(character_target, character_source)
       function_operation = "compare"
       function_args = "HasActiveStatus(playercharacter, 'DialogListenerOptIn') == 1"
       function_data = playercharacter .. "," .. "DialogListenerOptIn"
-      function_result = HasActiveStatus(GetHostCharacter(), "DialogListenerOptIn") == 1
+      function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogListenerOptIn") == 1)
 
       print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -104,7 +104,7 @@ function check_reassignment_requested(character_target, character_source)
     function_operation = "compare"
     function_args = "db_characters_want_dialog[1] == nil"
     function_data = db_characters_want_dialog[1]
-    function_result = db_characters_want_dialog[1] == nil
+    function_result = tostring(db_characters_want_dialog[1] == nil)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -126,9 +126,9 @@ function check_reassignment_requested(character_target, character_source)
   "," ..
   "DialogMethodRandom" ..
   "," .. "DialogMethodCharisma" .. "," .. "DialogMethodInitiative" .. "," .. tostring(db_characters_want_dialog[1])
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or
   HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 or
-  HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil
+  HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 

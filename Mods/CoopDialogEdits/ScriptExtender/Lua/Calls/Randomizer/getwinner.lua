@@ -11,7 +11,7 @@ local function fairness_handler(characters, character_dlg_roll_winner)
   function_operation = "compare"
   function_args = "db_count_dlg_roll_winner[%s] == nil", character_dlg_roll_winner
   function_data = db_count_dlg_roll_winner[character_dlg_roll_winner]
-  function_result = db_count_dlg_roll_winner[character_dlg_roll_winner] == nil
+  function_result = tostring(db_count_dlg_roll_winner[character_dlg_roll_winner] == nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -50,7 +50,7 @@ local function fairness_handler(characters, character_dlg_roll_winner)
     function_operation = "compare"
     function_args = "character ~= character_dlg_roll_winner"
     function_data = character .. "," .. character_dlg_roll_winner
-    function_result = character ~= character_dlg_roll_winner
+    function_result = tostring(character ~= character_dlg_roll_winner)
 
     print_log(function_name, function_operation, function_args, function_data, function_result)
     if character ~= character_dlg_roll_winner then
@@ -84,28 +84,28 @@ function determine_dialog_winner(characters, character_owner)
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogMethodRandom')"
   function_data = GetHostCharacter() .. "," .. "DialogMethodRandom"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodRandom")
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodRandom"))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogMethodVanilla')"
   function_data = GetHostCharacter() .. "," .. "DialogMethodVanilla"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla")
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla"))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogMethodInitiative')"
   function_data = GetHostCharacter() .. "," .. "DialogMethodInitiative"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative")
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative"))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
   function_operation = "compare"
   function_args = "HasActiveStatus(GetHostCharacter(), 'DialogMethodCharisma')"
   function_data = GetHostCharacter() .. "," .. "DialogMethodCharisma"
-  function_result = HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma")
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma"))
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -132,8 +132,8 @@ function determine_dialog_winner(characters, character_owner)
   function_args =
   "HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1 and db_characters_want_dialog[1] ~= nil"
   function_data = GetHostCharacter() .. "," .. "DialogPreferenceOptIn" .. "," .. tostring(db_characters_want_dialog[1])
-  function_result = HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1 and
-      db_characters_want_dialog[1] ~= nil
+  function_result = tostring(HasActiveStatus(GetHostCharacter(), 'DialogPreferenceOptIn') == 1 and
+      db_characters_want_dialog[1] ~= nil)
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -153,7 +153,7 @@ function determine_dialog_winner(characters, character_owner)
   function_operation = "compare"
   function_args = "method ~= 'vanilla'"
   function_data = method
-  function_result = method ~= "vanilla"
+  function_result = tostring(method ~= "vanilla")
 
   print_log(function_name, function_operation, function_args, function_data, function_result)
 
@@ -161,13 +161,13 @@ function determine_dialog_winner(characters, character_owner)
     function_operation = "compare"
     function_args = "#db_characters_want_dialog > 1"
     function_data = dump_table(db_characters_want_dialog)
-    function_result = #db_characters_want_dialog > 1
+    function_result = tostring(#db_characters_want_dialog > 1)
 
     print_log(function_name, function_operation, function_args, function_dat, function_result)
 
     function_operation = "compare"
     function_args = "ask"
-    function_data = ask
+    function_data = tostring(ask)
 
     print_log(function_name, function_operation, function_args, function_data)
 
