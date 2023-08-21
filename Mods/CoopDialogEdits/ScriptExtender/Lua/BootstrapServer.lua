@@ -28,7 +28,7 @@ end
 
 --TODO check if BG3SE runs with some sort of debug flag.
 --For now it's so debuggy that debugginess is hardcoded still.
-is_debug = false
+is_debug = true
 
 if is_debug then
   Ext.Require("Utils/custom_std.lua")

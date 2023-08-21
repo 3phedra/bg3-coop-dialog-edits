@@ -1,5 +1,5 @@
 function register_passive_spell(character)
-  local function_name = "populate_onload"
+  local function_name = "register_passive_spell"
   local function_operation = "called"
   local function_args = nil
   local function_data = nil
@@ -17,13 +17,13 @@ function register_passive_spell(character)
     --TODO Check how the engine handles dialog leaders being removed
 
   function_operation = "compare"
-  function_args = "character == character_host"
-  function_data = character .. ", " .. "character_host"
-  function_result = character == character_host
+  function_args = "string.sub(character, -36) == character_host"
+  function_data = string.sub(character, -36)  .. ", " .. "character_host"
+  function_result = string.sub(character, -36) == character_host
 
-  print_log(function_name, function_operation, function_args, function_data)
+  print_log(function_name, function_operation, function_args, function_data, function_result)
 
-  if character == character_host then
+  if string.sub(character, -36) == character_host then
 
     function_operation = "AddPassive"
     function_args = "character, 'CoopDialogPassiveMethodVanilla'"
