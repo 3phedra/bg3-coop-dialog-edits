@@ -11,6 +11,9 @@ if not skip_register then
   Ext.Require("EventHandlers/Dialog/event_request.lua")
   Ext.Require("EventHandlers/Dialog/event_started.lua")
   Ext.Require("EventHandlers/Dialog/event_ended.lua")
+  Ext.Require("EventHandlers/Game/event_save_loaded.lua")
+
+  Ext.Osiris.RegisterListener("SavegameLoaded", 0, "after", savegame_loaded)
 
   Ext.Osiris.RegisterListener("DialogStartRequested", 2, "before", dialog_requested)
   Ext.Osiris.RegisterListener("DialogStarted", 2, "before", dialog_started)

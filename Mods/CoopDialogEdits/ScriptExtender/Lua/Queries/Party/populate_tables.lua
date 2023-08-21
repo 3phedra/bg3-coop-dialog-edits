@@ -1,3 +1,45 @@
+function populate_onload()
+  local function_name = "populate_onload"
+  local function_operation = "called"
+  local function_args = nil
+  local function_data = nil
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  function_operation = "iterate"
+  function_args = "Osi.DB_PartOfTheTeam:Get(nil))"
+  function_data = dump_table(Osi.DB_PartOfTheTeam:Get(nil))
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  --Add all camp followers to a table (includes players)
+  for _, entry in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
+    table.insert(db_camp_characters, entry[1])
+
+    function_operation = "assign"
+    function_args = "db_camp_characters"
+    function_data = entry[1]
+
+    print_log(function_name, function_operation, function_args, function_data)
+  end
+
+  function_operation = "assign"
+  function_args = "character_host"
+  function_data = GetHostCharacter()
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  character_host = GetHostCharacter()
+
+  function_operation = "return"
+  function_args = nil
+  function_data = nil
+
+  print_log(function_name, function_operation, function_args, function_data)
+
+  return
+end
+
 function populate_dialog_metadata(character_target, character_source)
   local function_name = "populate_dialog_metadata"
   local function_operation = "called"

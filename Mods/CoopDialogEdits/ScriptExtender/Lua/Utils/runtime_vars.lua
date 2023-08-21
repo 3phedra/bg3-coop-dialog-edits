@@ -28,6 +28,7 @@ character_reassigned_follower_owner = "NULL_00000000-0000-0000-0000-000000000000
 character_reassigned_follower       = "NULL_00000000-0000-0000-0000-000000000000"
 character_dlg_owner_reassigned      = "NULL_00000000-0000-0000-0000-000000000000"
 character_dlg_roll_winner           = "NULL_00000000-0000-0000-0000-000000000000"
+character_host                      = "NULL_00000000-0000-0000-0000-000000000000"
 
 region_dlg                          = ""
 is_region_camp                      = 0
