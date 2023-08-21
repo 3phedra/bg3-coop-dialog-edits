@@ -10,15 +10,17 @@ function register_passive_spell(character)
   if string.sub(character, -36) == character_host then
     AddPassive(character, "CoopDialogPassiveMethodVanilla")
     AddPassive(character, "CoopDialogPassiveMethodRandom")
+    AddPassive(character, "CoopDialogPassiveMethodCharisma")
     AddPassive(character, "CoopDialogPassiveMethodInitiative")
     AddPassive(character, "CoopDialogPassivePreferenceFollowers")
-    AddPassive(character, "CoopDialogPassivePreferenceFollowers")
     AddPassive(character, "CoopDialogPassivePreferenceOptIn")
-    AddPassive(character, "CoopDialogPassivePreferenceDistance")
     AddPassive(character, "CoopDialogPassiveListenerOptIn")
+    AddPassive(character, "CoopDialogPassivePreferenceDistance")
     AddPassive(character, "CoopDialogPassivePreferenceDisable")
   else
     AddPassive(character, "CoopDialogPassiveListenerOptIn")
+    AddPassive(character, "CoopDialogPassivePreferenceDistance")
+    AddPassive(character, "CoopDialogPassivePreferenceDisable")
   end
   return
 end
