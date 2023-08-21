@@ -42,3 +42,5 @@ function savegame_loaded()
 
     return
 end
+
+Ext.Utils.Print(string.format("[%s]: Savegame load event subscribed", mod_info.Name))

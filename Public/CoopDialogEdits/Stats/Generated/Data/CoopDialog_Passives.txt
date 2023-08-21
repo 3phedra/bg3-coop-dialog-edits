@@ -106,7 +106,7 @@ data "Boosts" "DialogPreferenceFollowers()"
 data "ToggleOnFunctors" "ApplyStatus(DialogPreferenceFollowers,100,-1)"
 data "ToggleOffFunctors" "RemoveStatus(DialogPreferenceFollowers)"
 
-new entry "CoopDialogPassivePreferenceAsk"
+new entry "CoopDialogPassivePreferenceOptIn"
 type "PassiveData"
 data "DisplayName" "e6857cb2-7233-4b3c-bb66-133d6231b4c1"
 data "Description" "f951e156-08bd-400c-a2c1-037c847816f5"

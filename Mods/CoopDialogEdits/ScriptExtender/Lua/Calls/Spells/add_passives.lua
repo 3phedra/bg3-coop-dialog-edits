@@ -10,6 +10,11 @@ function register_passive_spell(character)
   --AddBoosts(GetHostCharacter(), "", "", "")
 
   --TODO add only when no dialog passive found
+  --TODO make an opt-out
+  --TODO make CoopDialogPassivePreferenceDisable client sided
+  --TODO make distance preference client sided
+  --TODO implement UI interaction methods
+    --TODO Check how the engine handles dialog leaders being removed
 
   function_operation = "compare"
   function_args = "character == character_host"
@@ -61,12 +66,12 @@ function register_passive_spell(character)
     AddPassive(character, "CoopDialogPassivePreferenceFollowers")
 
     function_operation = "AddPassive"
-    function_args = "character, 'CoopDialogPassivePreferenceAsk'"
-    function_data = character .. ", " .. "CoopDialogPassivePreferenceAsk"
+    function_args = "character, 'CoopDialogPassivePreferenceOptIn'"
+    function_data = character .. ", " .. "CoopDialogPassivePreferenceOptIn"
   
     print_log(function_name, function_operation, function_args, function_data)
 
-    AddPassive(character, "CoopDialogPassivePreferenceAsk")
+    AddPassive(character, "CoopDialogPassivePreferenceOptIn")
 
     function_operation = "AddPassive"
     function_args = "character, 'CoopDialogPassivePreferenceDistance'"
@@ -93,9 +98,6 @@ function register_passive_spell(character)
     AddPassive(character, "CoopDialogPassivePreferenceDisable")
 
   else
-    --TODO implement more fine-grained preferences per-character. 
-    --For example opt out of any method, demand to be asked (Messagebox) in vanilla method, 
-    --make distance preference client-sided
 
     function_operation = "AddPassive"
     function_args = "character, 'CoopDialogPassiveListenerOptIn'"
@@ -105,7 +107,7 @@ function register_passive_spell(character)
 
     AddPassive(character, "CoopDialogPassiveListenerOptIn")
   end
-  
+
   function_operation = "return"
   function_args = nil
   function_data = nil
