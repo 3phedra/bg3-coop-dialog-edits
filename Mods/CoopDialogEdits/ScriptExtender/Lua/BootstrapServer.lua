@@ -8,14 +8,16 @@ if not skip_register then
   Ext.Require("EventHandlers/Dialog/event_request.lua")
   Ext.Require("EventHandlers/Dialog/event_started.lua")
   Ext.Require("EventHandlers/Dialog/event_ended.lua")
+  Ext.Require("EventHandlers/Dialog/event_trade.lua")
   Ext.Require("EventHandlers/Game/event_save_loaded.lua")
   Ext.Osiris.RegisterListener("SavegameLoaded", 0, "after", savegame_loaded)
   Ext.Osiris.RegisterListener("DialogStartRequested", 2, "before", dialog_requested)
   Ext.Osiris.RegisterListener("DialogStarted", 2, "before", dialog_started)
-  Ext.Osiris.RegisterListener("DialogEnded", 2, "after", dialog_ended)
+  Ext.Osiris.RegisterListener("DialogEnded", 2, "after", trade_request)
   --Automated dialogs are rather annoying
   Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
   Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
+  Ext.Osiris.RegisterListener("RequestTrade",2,"after",trade_request)
   Ext.Utils.PrintWarning("All dialog scripts ready.")
 end
 --TODO check if BG3SE runs with some sort of debug flag.

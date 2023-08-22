@@ -1,4 +1,4 @@
-function check_reassignment_requested(character_target, character_source)
+function check_reassignment_requested(character_target)
   --Check if reassignment is needed at all
   if db_dialog_methods["method"] == "vanilla" or db_party_struct["RegionIsCamp"] then
     return false

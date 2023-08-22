@@ -6,6 +6,10 @@ function detach_character(character)
   --MakePlayer(SomeTotalNobody)
   --AssignToUser(db_party_struct[character]["UserID"],SomeTotalNobody)
   --Might work idk??
+
+  --What about DialogRemoveActorFromDialog(INTEGER, GUIDSTRING) followed by DialogAddActor(INTEGER, GUIDSTRING)
+  --Or DialogRequestStop(Speaker), DialogRequestStopForDialog(Dialog, Speaker) or DialogResume(InstanceID)
+  --What is DualDialogStart(Dialog, InstanceID)
   SetOnStage(character, 0)
   return
 end

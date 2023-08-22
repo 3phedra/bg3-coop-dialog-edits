@@ -7,7 +7,8 @@ function populate_onload()
   character_host = GetHostCharacter()
   return
 end
-function populate_dialog_metadata(character_target, character_source)
+function populate_dialog_metadata(character_target, character_source, dialog_ID)
+  db_party_struct["DialogID"] = dialog_ID
   db_party_struct["DialogOwner"] = character_source
   db_party_struct["PlayerCharacters"] = {}
   db_party_struct["ActiveParty"] = {}

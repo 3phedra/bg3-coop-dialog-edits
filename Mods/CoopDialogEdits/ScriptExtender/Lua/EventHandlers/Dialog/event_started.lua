@@ -10,7 +10,7 @@ function dialog_started(dialog_UUID, dialog_ID)
     --Some dialogs, such as crime dialogs start without a request and without being automated. Populate DBs.
     if db_party_struct["ActiveParty"][1] == nil then
       startTime = Ext.Utils.MonotonicTime()
-      populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1))
+      populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1), dialog_ID)
     end
     --if not check_if_target_is_vendor(dialog_target) and not check_if_target_is_special(dialog_target) then
     --Add all party characters to triggered dialog
