@@ -12,7 +12,6 @@ local function fairness_handler(characters, character_winner)
   return
 end
 function determine_dialog_winner(characters, character_owner)
-  populate_preference_table(characters)
   local character_dlg_roll_winner = character_owner
   --Get dialog ownership winner
   if db_dialog_methods["Method"] ~= "vanilla" then

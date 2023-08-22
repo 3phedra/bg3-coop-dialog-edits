@@ -17,7 +17,7 @@ if not skip_register then
   --Automated dialogs are rather annoying
   Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
   Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
-  Ext.Osiris.RegisterListener("RequestTrade", 2, "after", trade_request)
+  Ext.Osiris.RegisterListener("RequestTrade", 4, "after", trade_request)
   Ext.Utils.PrintWarning("All dialog scripts ready.")
 end
 --TODO check if BG3SE runs with some sort of debug flag.

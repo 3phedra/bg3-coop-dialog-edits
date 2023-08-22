@@ -16,7 +16,6 @@ function rawcomps()
   return
 end
 function list_party()
-  print("Reached")
   print(printTable(Osi.DB_Players:Get(nil)))
   return "test?"
 end

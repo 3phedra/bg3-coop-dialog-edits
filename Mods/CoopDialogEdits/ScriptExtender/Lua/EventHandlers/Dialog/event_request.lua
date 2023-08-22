@@ -11,17 +11,22 @@ function dialog_requested(character_target, character_source)
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
-  populate_dialog_metadata(character_target, character_source, dialog_ID)
+  populate_dialog_metadata(character_target, character_source, 0)
+  populate_preference_table()
   --Check if workaround needed for target character in case they're a follower currently in party
-  if db_party_struct[character_target]["UserID"] ~= db_party_struct[character_source]["UserID"] and not db_party_struct[character_target]["IsPlayer"] and has_value(db_party_struct["ActiveParty"], character_target) ~= nil then
-    --Temporarily re-assign party follower to dialog requester to facilitate dialog
-    reassign_follower(db_party_struct[character_source]["UserID"], character_target)
+  if has_value(db_party_struct["ActiveParty"], character_target) then
+    if db_party_struct[character_target]["IsPlayer"] == 0 then
+      if db_party_struct[character_target]["UserID"] ~= db_party_struct[character_source]["UserID"] then
+        --Temporarily re-assign party follower to dialog requester to facilitate dialog
+        reassign_follower(db_party_struct[character_source]["UserID"], character_target)
+      end
+    end
   end
   --Check if any passives are toggled for dialog ownership rolling and if so, roll the owner
   if check_reassignment_requested(character_target) then
     --Check if dialog target isn't a vendor or otherwise special (maybe companions?), as that would be annoying
     if not check_if_target_is_vendor(character_target) and not check_if_target_is_special(character_target) then
-      db_party_struct["DialogOwner"] = determine_dialog_winner(db_party_struct["PlayerCharacters"], character_source)
+      db_party_struct["DialogOwner"] = determine_dialog_winner(db_party_struct["ActiveParty"], character_source)
       --If dialog roll winner is not the character who started the dialog, detach dialog starter and re-initiate dialog for the winner
       if db_party_struct["DialogOwner"] ~= character_source then
         detach_character(character_source)

@@ -15,43 +15,59 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID)
   db_party_struct["Region"] = GetRegion(character_target)
   --TODO still todo check if in camp:
   db_party_struct["RegionIsCamp"] = false
+  db_party_struct["Camp"] = {}
+  db_party_struct["ActivePartyInRange"] = {}
+  db_party_struct["UserID"] = {}
   for _, character in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
     --BG3SE probably contains info for all of these but for now
-    db_party_struct[character]["IsPlayer"] = IsControlled(character[1])
-    db_party_struct[character]["UserID"] = GetReservedUserID(character[1])
-    db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character[1])
-    db_party_struct[character]["Region"] = GetRegion(character[1])
-    table.insert(db_party_struct["PlayerCharacters"], character)
+    character = character[1]
+    db_party_struct[character] = {}
+    db_party_struct[character]["IsPlayer"] = IsControlled(character)
+    db_party_struct[character]["UserID"] = GetReservedUserID(character)
+    db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character)
+    db_party_struct[character]["Region"] = GetRegion(character)
+    table.insert(db_party_struct["Camp"], character)
+    if IsControlled(character) == 1 then
+      table.insert(db_party_struct["PlayerCharacters"], character)
+      db_party_struct[db_party_struct[character]["UserID"]] = character
+    end
   end
   --Todo change this to a struct character flag
   for _, character in pairs(Osi.Db_Players:Get(nil)) do
-    table.insert(db_party_struct["ActiveParty"], character)
+    table.insert(db_party_struct["ActiveParty"], character[1])
+  end
+  for character in elementIterator(db_party_struct["ActiveParty"]) do
+    if db_party_struct[character]["Distance"] <= 35.0 then
+      table.insert(db_party_struct["ActivePartyInRange"], character)
+    end
   end
 end
-function populate_preference_table(characters)
+function populate_preference_table()
   db_dialog_methods["CharactersWantDialog"] = {}
+  db_dialog_methods["CharactersWantDialogInRange"] = {}
   db_dialog_methods["RollResults"] = {}
-  db_dialog_methods["method"] = "vanilla"
-  if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") then
+  db_dialog_methods["Method"] = "vanilla"
+  db_dialog_methods["RequestOptIn"] = false
+  db_dialog_methods["FollowerPreference"] = false
+  db_dialog_methods["DistancePreference"] = false
+  if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1 then
     db_dialog_methods["Method"] = "vanilla"
     db_dialog_methods["Modifier"] = "Nullify"
-  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") then
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 then
     db_dialog_methods["Method"] = "random"
     db_dialog_methods["Modifier"] = "Nullify"
-  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") then
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 then
     db_dialog_methods["Method"] = "charisma"
     db_dialog_methods["Modifier"] = "Charisma"
-  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") then
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 then
     db_dialog_methods["Method"] = "initiative"
-    db_dialog_methods["Modifier"] = "initiative"
+    db_dialog_methods["Modifier"] = "Initiative"
   end
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and db_characters_want_dialog[1] ~= nil then
-    db_dialog_methods["RequestOptIn"] = true
-  end
-  if HasActiveStatus(GetHostCharacter(), "FollowerPreference") == 1 then
+  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 1 then
     db_dialog_methods["FollowerPreference"] = true
   end
-  for character in elementIterator(characters) do
+  for character in elementIterator(db_party_struct["Camp"]) do
+    db_dialog_methods[character] = {}
     if db_dialog_methods["Modifier"] ~= nil and not db_dialog_methods["Modifier"] == "Nullify" then
       --TODO round down
       db_dialog_methods[character]["Modifier"] = (-10 + GetAbility(character, db_dialog_methods["Modifier"])) / 2
@@ -60,6 +76,9 @@ function populate_preference_table(characters)
     end
     if HasActiveStatus(character, "DialogListenerOptIn") == 1 then
       table.insert(db_dialog_methods["CharactersWantDialog"], character)
+      if db_party_struct[character]["Distance"] <= 35.0 then
+        table.insert(db_dialog_methods["CharactersWantDialogInRange"], character)
+      end
     end
     if db_dialog_methods[character]["FairnessMod"] == nil then
       db_dialog_methods[character]["FairnessMod"] = 0
@@ -68,7 +87,13 @@ function populate_preference_table(characters)
       db_dialog_methods[character]["WinCount"] = 0
     end
   end
-  if db_dialog_methods["RequestOptIn"] and db_dialog_methods["CharactersWantDialog"] < 1 then
-    db_dialog_methods["method"] = "vanilla"
+  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDistance") == 1 then
+    db_dialog_methods["DistancePreference"] = true
+    db_dialog_methods["CharactersWantDialog"] = db_dialog_methods["CharactersWantDialogInRange"]
+  end
+  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and #db_dialog_methods["CharactersWantDialog"] > 0 then
+    db_dialog_methods["RequestOptIn"] = true
+  elseif HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and #db_dialog_methods["CharactersWantDialog"] < 1 then
+    db_dialog_methods["Method"] = "vanilla"
   end
 end

@@ -18,7 +18,7 @@ function detach_character(character)
 end
 function reassign_follower(userid_new, character_target)
   db_party_struct[character_target]["OrigOwnerUserID"] = db_party_struct[character_target]["UserID"]
-  db_party_struct[character_target]["OrigOwnerCharacter"] = db_party_struct[character_target]
+  db_party_struct[character_target]["OrigOwnerCharacter"] = db_party_struct[db_party_struct[character_target]["OrigOwnerUserID"]]
   db_party_struct[character_target]["WasReassigned"] = true
   db_party_struct["Reassigned_Follower"] = character_target
   AssignToUser(userid_new, character_target)
@@ -36,7 +36,7 @@ function attach_character()
 end
 function attach_follower()
   if db_party_struct["Reassigned_Follower"] ~= nil then
-    AssignToUser(db_party_struct[follower]["OrigOwnerUserID"], db_party_struct["Reassigned_Follower"])
-    AttachToPartyGroup(db_party_struct["Reassigned_Follower"], db_party_struct[character_target]["OrigOwnerCharacter"])
+    AssignToUser(db_party_struct[db_party_struct["Reassigned_Follower"]]["OrigOwnerUserID"], db_party_struct["Reassigned_Follower"])
+    AttachToPartyGroup(db_party_struct["Reassigned_Follower"], db_party_struct[db_party_struct["Reassigned_Follower"]]["OrigOwnerCharacter"])
   end
 end
