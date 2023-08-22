@@ -13,7 +13,7 @@ if not skip_register then
   Ext.Osiris.RegisterListener("SavegameLoaded", 0, "after", savegame_loaded)
   Ext.Osiris.RegisterListener("DialogStartRequested", 2, "before", dialog_requested)
   Ext.Osiris.RegisterListener("DialogStarted", 2, "before", dialog_started)
-  Ext.Osiris.RegisterListener("DialogEnded", 2, "after", trade_request)
+  Ext.Osiris.RegisterListener("DialogEnded", 2, "after", dialog_ended)
   --Automated dialogs are rather annoying
   Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
   Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
