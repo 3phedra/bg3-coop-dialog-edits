@@ -16,7 +16,7 @@ if not skip_register then
   --Automated dialogs are rather annoying
   Ext.Osiris.RegisterListener("AutomatedDialogStarted", 2, "before", automated_dialog_started)
   Ext.Osiris.RegisterListener("AutomatedDialogEnded", 2, "after", dialog_ended)
-  Ext.Utils.PrintWarning("Dialog scripts ready.")
+  Ext.Utils.PrintWarning("All dialog scripts ready.")
 end
 --TODO check if BG3SE runs with some sort of debug flag.
 --For now it's so debuggy that debugginess is hardcoded still.
@@ -35,5 +35,6 @@ if is_debug then
   Ext.RegisterConsoleCommand("GetDialogs", query_dialogs)
   --Scope creep
   Ext.RegisterConsoleCommand("TheCommonBugFixer", bug_fixer)
+  --Ohhh the misery
   --Ext.Utils.GenerateIdeHelpers()
 end

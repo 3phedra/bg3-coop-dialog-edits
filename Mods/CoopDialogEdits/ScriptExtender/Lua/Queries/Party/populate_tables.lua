@@ -1,50 +1,68 @@
 function populate_onload()
+  db_party_struct["Camp"] = {}
   --Add all camp followers to a table (includes players)
   for _, entry in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
-    table.insert(db_camp_characters, entry[1])
+    table.insert(db_party_struct["Camp"], entry[1])
   end
   character_host = GetHostCharacter()
   return
 end
 function populate_dialog_metadata(character_target, character_source)
-  --Add all and controlled party members respectively
-  --TODO db_party_all can be expanded to contain UserID, IsControlled, Region and Distance data
-  --but probably not much performance to be gained.
-  --If distance preference is toggled, populate dbs only with characters within earshot
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDistance") ~= 1 then
-    for _, character in pairs(Osi.DB_Players:Get(nil)) do
-      table.insert(db_party_all, character[1])
-      if IsControlled(character[1]) == 1 then
-        table.insert(db_party_players, character[1])
-        db_userids[GetReservedUserID(character[1])] = character[1]
-      end
+  db_party_struct["DialogOwner"] = character_source
+  db_party_struct["PlayerCharacters"] = {}
+  db_party_struct["ActiveParty"] = {}
+  db_party_struct["Region"] = GetRegion(character_target)
+  --TODO still todo check if in camp:
+  db_party_struct["RegionIsCamp"] = false
+  for _, character in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
+    --BG3SE probably contains info for all of these but for now
+    db_party_struct[character]["IsPlayer"] = IsControlled(character[1])
+    db_party_struct[character]["UserID"] = GetReservedUserID(character[1])
+    db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character[1])
+    db_party_struct[character]["Region"] = GetRegion(character[1])
+    table.insert(db_party_struct["PlayerCharacters"], character)
+  end
+  --Todo change this to a struct character flag
+  for _, character in pairs(Osi.Db_Players:Get(nil)) do
+    table.insert(db_party_struct["ActiveParty"], character)
+  end
+end
+function populate_preference_table(characters)
+  db_dialog_methods["CharactersWantDialog"] = {}
+  db_dialog_methods["method"] = "vanilla"
+  if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") then
+    db_dialog_methods["Method"] = "vanilla"
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") then
+    db_dialog_methods["Method"] = "random"
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") then
+    db_dialog_methods["Method"] = "charisma"
+    db_dialog_methods["Modifier"] = "Charisma"
+  elseif HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") then
+    db_dialog_methods["Method"] = "initiative"
+    db_dialog_methods["Modifier"] = "initiative"
+  end
+  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 and db_characters_want_dialog[1] ~= nil then
+    db_dialog_methods["RequestOptIn"] = true
+  end
+  if HasActiveStatus(GetHostCharacter(), "FollowerPreference") == 1 then
+    db_dialog_methods["FollowerPreference"] = true
+  end
+  for character in elementIterator(characters) do
+    if not db_dialog_methods["Modifier"] == nil then
+      --TODO round down
+      db_dialog_methods[character]["Modifier"] = (-10 + GetAbility(character, db_dialog_methods["Modifier"])) / 2
     end
-  else
-    for _, character in pairs(Osi.DB_Players:Get(nil)) do
-      if GetDistanceTo(character_target, character[1]) <= 35.0 and GetRegion(character[1]) == GetRegion(character_source) then
-        table.insert(db_party_all, character[1])
-        if IsControlled(character[1]) == 1 then
-          table.insert(db_party_players, character[1])
-          db_userids[GetReservedUserID(character[1])] = character[1]
-        end
-      end
+    if HasActiveStatus(character, "DialogListenerOptIn") == 1 then
+      table.insert(db_dialog_methods["CharactersWantDialog"], character)
+    end
+    if db_dialog_methods[character]["FairnessMod"] == nil then
+      db_dialog_methods[character]["FairnessMod"] = 0
+    end
+    if db_dialog_methods[character]["WinCount"] == nil then
+      db_dialog_methods[character]["WinCount"] = 0
     end
   end
-  --Add all camp followers to a table
-  for _, entry in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
-    table.insert(db_camp_characters, entry[1])
+  if db_dialog_methods["RequestOptIn"] and db_dialog_methods["CharactersWantDialog"] < 1 then
+    db_dialog_methods["method"] = "vanilla"
   end
-  region_dlg = GetRegion(character_target)
-  --TODO check what this even returns and if something better than "camp" can be used
-  if string.find(region_dlg, "camp") then
-    --Take into consideration whether the dialog region is the camp area
-    is_region_camp = 1
-  end
-  --Store dialog starter character UserID
-  userid_dlg_owner = GetReservedUserID(character_source)
-  character_dlg_owner = character_source
-  --Store dialog target character UserID
-  userid_dlg_targetowner = GetReservedUserID(character_target)
-  character_dlg_target = character_target
-  return
 end

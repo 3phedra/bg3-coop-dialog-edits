@@ -7,17 +7,22 @@ function dialog_started(dialog_UUID, dialog_ID)
   --Get character that triggered dialog event
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
-    local dialog_owner = DialogGetInvolvedPlayer(dialog_ID, 1)
-    if db_party_all[1] == nil then
+    if db_party_struct["ActiveParty"][1] == nil then
       populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1))
     end
     --if not check_if_target_is_vendor(dialog_target) and not check_if_target_is_special(dialog_target) then
     --Add all party characters to triggered dialog
-    for character in elementIterator(db_party_all) do
+    for character in elementIterator(db_party_struct["ActiveParty"]) do
       --Check if character about to be added to dialog isn't in another dialog
       if select(2, SpeakerGetDialog(character, 1)) == nil then
-        character_distance_to_dialog = GetDistanceTo(dialog_owner, character)
-        DialogAddActor(dialog_ID, character)
+        --Check if distance was toggled and if so, check distance to target
+        if db_dialog_methods["RequestOptIn"] then
+          if db_party_struct[character]["Distance"] <= 35.0 then
+            DialogAddActor(dialog_ID, character)
+          end
+        else
+          DialogAddActor(dialog_ID, character)
+        end
         --Osi.PROC_DialogAddSpeakingActor(dialog_ID, character)
       end
     end
@@ -34,17 +39,8 @@ function automated_dialog_started(dialog_UUID, dialog_ID)
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
-  --TODO implement this
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
     is_automated_dialog = 1
-    --dialog_requested event is skipped in automated dialogs, but we need a party db
-    for _, entry in pairs(Osi.DB_Players:Get(nil)) do
-      table.insert(db_party_all, entry[1])
-      if IsControlled(entry[1]) == 1 then
-        table.insert(db_party_players, entry[1])
-        db_userids[GetReservedUserID(entry[1])] = entry[1]
-      end
-    end
     dialog_started(dialog_UUID, dialog_ID)
     return
   end

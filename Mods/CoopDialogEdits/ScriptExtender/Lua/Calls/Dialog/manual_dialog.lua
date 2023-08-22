@@ -10,7 +10,7 @@ function manual_restart_dialog(character_source, character_target)
   chosen_dialog = determine_dialog_with_target(character_source, character_target)
   table.insert(dialog_listener, chosen_owner)
   local table_index = 1
-  for character in elementIterator(db_party_all) do
+  for character in elementIterator(db_party_struct["ActiveParty"]) do
     if character ~= nil and character ~= chosen_owner and character ~= character_target then
       table.insert(dialog_listener, character)
     end

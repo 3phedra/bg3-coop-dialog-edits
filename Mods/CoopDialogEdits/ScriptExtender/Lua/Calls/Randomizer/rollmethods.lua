@@ -1,32 +1,14 @@
 function check_reassignment_requested(character_target, character_source)
   --Check if reassignment is needed at all
-  --TODO Add more methods
-  if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1 then
+  if db_dialog_methods["method"] == "vanilla" or db_party_struct["RegionIsCamp"] then
     return false
-  end
-  if is_region_camp == 1 then
-    return false
-  end
-  if has_value(db_camp_characters, character_target) then
-    if HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 0 then
+  elseif has_value(db_party_struct["Camp"], character_target) then
+    if db_dialog_methods["FollowerPreference"] then
+      return true
+    else
       return false
     end
+  elseif db_dialog_methods["Method"] ~= "vanilla" then
+    return true
   end
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceOptIn") == 1 then
-    for playercharacter in elementIterator(db_party_players) do
-      if HasActiveStatus(playercharacter, "DialogListenerOptIn") == 1 then
-        table.insert(db_characters_want_dialog, playercharacter)
-      end
-    end
-    if db_characters_want_dialog[1] == nil then
-      db_characters_want_dialog[1] = character_source
-    end
-  end
-  if HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") == 1 or HasActiveStatus(GetHostCharacter(), "DialogMethodInitiative") == 1 or db_characters_want_dialog[1] ~= nil then
-    reassignment_requested = true
-  else
-    reassignment_requested = false
-  end
-  print_log(event_name, event_state, event_operation, event_args, event_data)
-  return reassignment_requested
 end
