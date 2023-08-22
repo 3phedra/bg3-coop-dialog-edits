@@ -13,6 +13,7 @@ function notify_roll_result()
     --msg = ("Dialog leader: " .. roll_winner .. " rolled " .. win_roll .. ". You rolled " .. own_roll .. ".")
     --Notifications dont show during dialogs :( Probably custom UI needed
     --ShowNotification(character, msg)
+    --Maybe ShowError(CHARACTER, STRING) ?
   end
   print("Roll won by " .. roll_winner .. " with " .. win_roll)
 end

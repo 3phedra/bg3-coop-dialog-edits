@@ -8,8 +8,11 @@ function detach_character(character)
   --Might work idk??
 
   --What about DialogRemoveActorFromDialog(INTEGER, GUIDSTRING) followed by DialogAddActor(INTEGER, GUIDSTRING)
+  --Or SpeakerGetDialog(GUIDSTRING, INTEGER, DIALOGRESOURCE, INTEGER)
   --Or DialogRequestStop(Speaker), DialogRequestStopForDialog(Dialog, Speaker) or DialogResume(InstanceID)
   --What is DualDialogStart(Dialog, InstanceID)
+  --What about setting the target off stage, then onstage and restart manually?
+  --Maybe SharedTurnBaseMode(CHARACTER, INTEGER) gets rid of shared turns
   SetOnStage(character, 0)
   return
 end
