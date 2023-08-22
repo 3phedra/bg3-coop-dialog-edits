@@ -4,14 +4,11 @@ function manual_restart_dialog(character_source, character_target)
   local dialog_listener = {}
   local nulluser = "NULL_00000000-0000-0000-0000-000000000000"
   local chosen_dialog
-  local chosen_owner
   --TODO change this to match chosen_dialog
-  chosen_owner = character_source
   chosen_dialog = determine_dialog_with_target(character_source, character_target)
-  table.insert(dialog_listener, chosen_owner)
-  local table_index = 1
+  table.insert(dialog_listener, character_source)
   for character in elementIterator(db_party_struct["ActiveParty"]) do
-    if character ~= nil and character ~= chosen_owner and character ~= character_target then
+    if character ~= nil and character ~= character_source and character ~= character_target then
       table.insert(dialog_listener, character)
     end
   end

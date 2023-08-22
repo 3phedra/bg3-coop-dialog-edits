@@ -1,6 +1,11 @@
 function detach_character(character)
   db_party_struct[character]["WasDetached"] = true
   db_party_struct["DetachedPlayer"] = character
+  --TODO listeners set off stage get a weird echo in dialogs. Find a better method. Again. :(
+  --Something hacky with an ungrouped NPC perhaps...
+  --MakePlayer(SomeTotalNobody)
+  --AssignToUser(db_party_struct[character]["UserID"],SomeTotalNobody)
+  --Might work idk??
   SetOnStage(character, 0)
   return
 end

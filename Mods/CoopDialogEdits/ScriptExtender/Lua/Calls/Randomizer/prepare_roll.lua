@@ -17,11 +17,11 @@ function determine_dialog_winner(characters, character_owner)
   --Get dialog ownership winner
   if db_dialog_methods["Method"] ~= "vanilla" then
     if db_dialog_methods["RequestOptIn"] and #db_dialog_methods["CharactersWantDialog"] > 1 then
-      character_dlg_roll_winner = roll_for_dialog(db_dialog_methods["method"], db_dialog_methods["CharactersWantDialog"])
+      character_dlg_roll_winner = roll_for_dialog(db_dialog_methods["CharactersWantDialog"])
     elseif db_dialog_methods["RequestOptIn"] and #db_dialog_methods["CharactersWantDialog"] == 1 then
       character_dlg_roll_winner = db_dialog_methods["CharactersWantDialog"][1]
     else
-      character_dlg_roll_winner = roll_for_dialog(db_dialog_methods["method"], characters)
+      character_dlg_roll_winner = roll_for_dialog(characters)
     end
   else
     character_dlg_roll_winner = characters[1]

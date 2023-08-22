@@ -7,7 +7,9 @@ function dialog_started(dialog_UUID, dialog_ID)
   --Get character that triggered dialog event
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
+    --Some dialogs, such as crime dialogs start without a request and without being automated. Populate DBs.
     if db_party_struct["ActiveParty"][1] == nil then
+      startTime = Ext.Utils.MonotonicTime()
       populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1))
     end
     --if not check_if_target_is_vendor(dialog_target) and not check_if_target_is_special(dialog_target) then
@@ -30,9 +32,9 @@ function dialog_started(dialog_UUID, dialog_ID)
     if is_automated_dialog ~= 1 then
       -- notify_roll_result()
     end
+    endTime = Ext.Utils.MonotonicTime()
+    Ext.Utils.Print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
   end
-  --endTime = Ext.Utils.MonotonicTime()
-  --print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
   return
 end
 function automated_dialog_started(dialog_UUID, dialog_ID)

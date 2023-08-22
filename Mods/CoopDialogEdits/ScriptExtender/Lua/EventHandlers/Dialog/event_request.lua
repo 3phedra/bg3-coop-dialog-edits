@@ -1,6 +1,6 @@
 Ext.Require("Calls/CharacterOperations/character_reassignments.lua")
-Ext.Require("Calls/Randomizer/rollmethods.lua")
-Ext.Require("Calls/Randomizer/getwinner.lua")
+Ext.Require("Calls/Randomizer/check_roll_request.lua")
+Ext.Require("Calls/Randomizer/prepare_roll.lua")
 Ext.Require("Calls/Dialog/manual_dialog.lua")
 Ext.Require("Queries/Dialog/check_target.lua")
 Ext.Require("Queries/Party/populate_tables.lua")
@@ -13,7 +13,7 @@ function dialog_requested(character_target, character_source)
   end
   populate_dialog_metadata(character_target, character_source)
   --Check if workaround needed for target character in case they're a follower currently in party
-  if db_party_struct[character_target]["UserID"] ~= db_party_struct[character_source]["UserID"] and not db_party_struct[character_target]["IsPlayer"] and db_party_struct[character_target] ~= nil then
+  if db_party_struct[character_target]["UserID"] ~= db_party_struct[character_source]["UserID"] and not db_party_struct[character_target]["IsPlayer"] and has_value(db_party_struct["ActiveParty"], character_target) ~= nil then
     --Temporarily re-assign party follower to dialog requester to facilitate dialog
     reassign_follower(db_party_struct[character_source]["UserID"], character_target)
   end

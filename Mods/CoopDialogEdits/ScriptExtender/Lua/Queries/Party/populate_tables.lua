@@ -29,11 +29,14 @@ function populate_dialog_metadata(character_target, character_source)
 end
 function populate_preference_table(characters)
   db_dialog_methods["CharactersWantDialog"] = {}
+  db_dialog_methods["RollResults"] = {}
   db_dialog_methods["method"] = "vanilla"
   if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") then
     db_dialog_methods["Method"] = "vanilla"
+    db_dialog_methods["Modifier"] = "Nullify"
   elseif HasActiveStatus(GetHostCharacter(), "DialogMethodRandom") then
     db_dialog_methods["Method"] = "random"
+    db_dialog_methods["Modifier"] = "Nullify"
   elseif HasActiveStatus(GetHostCharacter(), "DialogMethodCharisma") then
     db_dialog_methods["Method"] = "charisma"
     db_dialog_methods["Modifier"] = "Charisma"
@@ -48,9 +51,11 @@ function populate_preference_table(characters)
     db_dialog_methods["FollowerPreference"] = true
   end
   for character in elementIterator(characters) do
-    if not db_dialog_methods["Modifier"] == nil then
+    if db_dialog_methods["Modifier"] ~= nil and not db_dialog_methods["Modifier"] == "Nullify" then
       --TODO round down
       db_dialog_methods[character]["Modifier"] = (-10 + GetAbility(character, db_dialog_methods["Modifier"])) / 2
+    else
+      db_dialog_methods[character]["Modifier"] = 0
     end
     if HasActiveStatus(character, "DialogListenerOptIn") == 1 then
       table.insert(db_dialog_methods["CharactersWantDialog"], character)
