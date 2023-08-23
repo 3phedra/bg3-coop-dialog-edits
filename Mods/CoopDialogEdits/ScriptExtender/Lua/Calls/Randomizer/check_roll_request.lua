@@ -8,7 +8,7 @@ function check_reassignment_requested(character_target)
     else
       return false
     end
-  elseif db_dialog_methods["Method"] ~= "vanilla" then
+  else
     return true
   end
 end

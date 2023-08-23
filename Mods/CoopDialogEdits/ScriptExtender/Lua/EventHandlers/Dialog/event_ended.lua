@@ -6,6 +6,7 @@ function dialog_ended(dialog_UUID, dialog_ID)
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
     --Return a re-assigned follower to their original owner
+    --TODO pass dialog_id to handle eventual simultaneous dialogs
     attach_follower()
     --Re-attach a detached player character to their original user
     attach_character()

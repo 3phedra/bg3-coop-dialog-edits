@@ -97,3 +97,20 @@ function dump_table_inline(o)
     return tostring(o)
   end
 end
+function getKeysSortedByValue(tbl, sortFunction)
+  local keys = {}
+  for key in pairs(tbl) do
+    table.insert(keys, key)
+  end
+  table.sort(keys, function(a, b)
+    return sortFunction(tbl[a], tbl[b])
+  end)
+  return keys
+end
+function tablefind(tab, el)
+  for index, value in pairs(tab) do
+    if value == el then
+      return index
+    end
+  end
+end

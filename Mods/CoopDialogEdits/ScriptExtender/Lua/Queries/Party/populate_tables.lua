@@ -10,6 +10,7 @@ end
 function populate_dialog_metadata(character_target, character_source, dialog_ID)
   db_party_struct["DialogID"] = dialog_ID
   db_party_struct["DialogOwner"] = character_source
+  db_party_struct["DialogTarget"] = character_target
   db_party_struct["PlayerCharacters"] = {}
   db_party_struct["ActiveParty"] = {}
   db_party_struct["Region"] = GetRegion(character_target)
@@ -18,6 +19,7 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID)
   db_party_struct["Camp"] = {}
   db_party_struct["ActivePartyInRange"] = {}
   db_party_struct["UserID"] = {}
+  db_party_struct["Followers"] = {}
   for _, character in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
     --BG3SE probably contains info for all of these but for now
     character = character[1]
@@ -26,10 +28,13 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID)
     db_party_struct[character]["UserID"] = GetReservedUserID(character)
     db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character)
     db_party_struct[character]["Region"] = GetRegion(character)
+    db_party_struct[character]["WasDetached"] = false
     table.insert(db_party_struct["Camp"], character)
     if IsControlled(character) == 1 then
       table.insert(db_party_struct["PlayerCharacters"], character)
       db_party_struct[db_party_struct[character]["UserID"]] = character
+    else
+      table.insert(db_party_struct["Followers"], character)
     end
   end
   --Todo change this to a struct character flag
@@ -66,7 +71,7 @@ function populate_preference_table()
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceFollowers") == 1 then
     db_dialog_methods["FollowerPreference"] = true
   end
-  for character in elementIterator(db_party_struct["Camp"]) do
+  for character in elementIterator(db_party_struct["ActiveParty"]) do
     db_dialog_methods[character] = {}
     if db_dialog_methods["Modifier"] ~= nil and not db_dialog_methods["Modifier"] == "Nullify" then
       --TODO round down

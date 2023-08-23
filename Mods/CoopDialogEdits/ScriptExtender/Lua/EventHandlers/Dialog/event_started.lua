@@ -3,7 +3,6 @@ function dialog_started(dialog_UUID, dialog_ID)
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
-  local character_distance_to_dialog
   --Get character that triggered dialog event
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
@@ -14,7 +13,6 @@ function dialog_started(dialog_UUID, dialog_ID)
     else
       db_party_struct["DialogID"] = dialog_ID
     end
-  
     --if not check_if_target_is_vendor(dialog_target) and not check_if_target_is_special(dialog_target) then
     --Add all party characters to triggered dialog
     for character in elementIterator(db_party_struct["ActiveParty"]) do
@@ -24,6 +22,8 @@ function dialog_started(dialog_UUID, dialog_ID)
         if db_dialog_methods["DistancePreference"] then
           if db_party_struct[character]["Distance"] <= 35.0 then
             DialogAddActor(dialog_ID, character)
+          else
+            notify_out_of_range(character)
           end
         else
           DialogAddActor(dialog_ID, character)
@@ -32,9 +32,6 @@ function dialog_started(dialog_UUID, dialog_ID)
       end
     end
     --TODO check if dialog was with a follower, if so do not notify
-    if is_automated_dialog ~= 1 then
-      -- notify_roll_result()
-    end
     endTime = Ext.Utils.MonotonicTime()
     Ext.Utils.Print("Dialog injection took: " .. tostring(endTime - startTime) .. " ms")
   end
@@ -44,11 +41,8 @@ function automated_dialog_started(dialog_UUID, dialog_ID)
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
-  if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
-    is_automated_dialog = 1
-    dialog_started(dialog_UUID, dialog_ID)
-    return
-  end
+  dialog_started(dialog_UUID, dialog_ID)
+  return
 end
 Ext.Utils.Print(string.format("[%s]: Dialog start event subscribed", mod_info.Name))
 Ext.Utils.Print(string.format("[%s]: Automated dialog start event subscribed", mod_info.Name))

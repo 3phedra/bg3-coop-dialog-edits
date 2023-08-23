@@ -17,3 +17,6 @@ function notify_roll_result()
   end
   print("Roll won by " .. roll_winner .. " with " .. win_roll)
 end
+function notify_out_of_range(character)
+  ShowNotification(character, "A dialog started out of listening range.")
+end
