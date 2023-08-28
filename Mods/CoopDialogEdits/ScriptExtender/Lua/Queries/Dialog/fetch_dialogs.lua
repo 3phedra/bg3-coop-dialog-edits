@@ -4,6 +4,8 @@ function determine_dialog_with_target(character_source, character_target)
   local chosen_dialog
   --Query all available dialogs with target character and add to table
   --TODO Take dialog owner into consideration
+  --Todo this doesnt work for "S_Player_Jaheira_91b6b200-7d00-4d62-8dc9-99e8339dfa1a" ??
+  --UUID "HAV_Jaheira_a8318e4c-7e39-4f4f-1610-a9d3e7a1c1c8"
   for _, entry in pairs(Osi.DB_Dialogs:Get(character_target, nil)) do table.insert(target_available_dialogs, entry[2]) end
   --TODO Figure out how to pick the correct dialog. Picking the last in list for now
   if not check_if_target_is_special(character_target) then

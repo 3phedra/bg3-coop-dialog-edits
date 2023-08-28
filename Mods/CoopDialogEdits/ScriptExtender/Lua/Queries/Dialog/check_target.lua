@@ -6,6 +6,7 @@ function check_if_target_is_special(character_target)
     table.insert(target_available_dialogs, entry[1])
   end
   if #target_available_dialogs > 1 then
+    Ext.Utils.PrintWarning("Target has special dialog. This is unimplemented")
     return true
   else
     return false

@@ -14,7 +14,13 @@ function manual_restart_dialog(character_source, character_target)
         --Sleeping does appear to do Osiris some good...For now and for good measure
         sleep(100)
       end
-      table.insert(dialog_listener, character)
+      if db_dialog_methods["DistancePreference"] then
+        if db_party_struct[character]["Distance"] <= 35.0 then
+          table.insert(dialog_listener, character)
+        end
+      else
+        table.insert(dialog_listener, character)
+      end
     end
   end
   for i = #dialog_listener + 1, 5 do

@@ -22,7 +22,18 @@ function determine_dialog_winner(target)
   if has_value(competitors_want, target) then
     table.remove(competitors_want, tablefind(competitors_want, target))
   end
-
+  if db_dialog_methods["DistancePreference"] then
+    for character in elementIterator(competitors) do
+      if db_party_struct[character]["Distance"] > 35.0 then
+        if has_value(competitors_want, character) then
+          table.remove(competitors, tablefind(competitors, character))
+        end
+        if has_value(competitors_want, character) then
+          table.remove(competitors_want, tablefind(competitors_want, character))
+        end
+      end
+    end
+  end
   --Get dialog ownership winner
   if db_dialog_methods["RequestOptIn"] and #competitors_want > 1 then
     winner = roll_for_dialog(competitors_want)
