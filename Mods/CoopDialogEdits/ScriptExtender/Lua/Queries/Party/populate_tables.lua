@@ -7,8 +7,9 @@ function populate_onload()
   character_host = GetHostCharacter()
   return
 end
-function populate_dialog_metadata(character_target, character_source, dialog_ID)
+function populate_dialog_metadata(character_target, character_source, dialog_ID, dialog_UUID)
   db_dialog_struct["DialogID"] = dialog_ID
+  db_dialog_struct["DialogUUID"] = dialog_UUID
   db_dialog_struct["DialogOwner"] = character_source
   db_dialog_struct["DialogTarget"] = character_target
   db_dialog_struct["Region"] = GetRegion(character_target)

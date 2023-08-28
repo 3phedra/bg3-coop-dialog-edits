@@ -11,7 +11,7 @@ function dialog_requested(character_target, character_source)
   if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
     return
   end
-  populate_dialog_metadata(character_target, character_source, 0)
+  populate_dialog_metadata(character_target, character_source, 0, 0)
   populate_preference_table()
   --Check if workaround needed for target character in case they're a follower currently in party
   if has_value(db_party_struct["Camp"], character_target) then

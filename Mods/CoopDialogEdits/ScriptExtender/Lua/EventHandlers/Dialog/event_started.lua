@@ -10,9 +10,10 @@ function dialog_started(dialog_UUID, dialog_ID)
     if db_party_struct["ActiveParty"] == nil then
       startTime = Ext.Utils.MonotonicTime()
       Ext.Utils.PrintWarning("Populating dialog metadata outside of request. This is hopefully intended.")
-      populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1), dialog_ID)
+      populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1), dialog_ID, dialog_UUID)
     else
       db_dialog_struct["DialogID"] = dialog_ID
+      db_dialog_struct["DialogUUID"] = dialog_UUID
     end
     --if not check_if_target_is_vendor(dialog_target) and not check_if_target_is_special(dialog_target) then
     --Add all party characters to triggered dialog
