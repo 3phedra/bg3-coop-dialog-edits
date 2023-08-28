@@ -34,6 +34,10 @@ Thank you Norbyte.
 
 Install the .pak however you usually install .paks, I recommend BG3MM. Or use the loose files directly in the Data directory.
 
+<span style="color:red">**Installing this mod will make your savegame depend on the presence of [CoopDialog_Passives.txt](https://github.com/3phedra/bg3-coop-dialog-edits/blob/main/Public/CoopDialogEdits/Stats/Generated/Data/CoopDialog_Passives.txt) that is bundled with this mod. Without this file your save will not load.**</span>
+
+I'll get around to sorting this out eventually.
+
 ## Usage
 
 This will change a lot as I add more polish. At present, the host-controlled character will be given an ample amount of toggles:
