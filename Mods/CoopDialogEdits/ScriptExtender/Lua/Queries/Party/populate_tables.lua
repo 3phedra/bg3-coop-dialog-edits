@@ -43,6 +43,7 @@ function populate_preference_table()
   db_dialog_methods["Method"] = "vanilla"
   db_dialog_methods["RequestOptIn"] = false
   db_dialog_methods["DistancePreference"] = false
+  db_dialog_methods["Modifier"] = "Nullify"
   if HasActiveStatus(GetHostCharacter(), "DialogMethodVanilla") == 1 then
     db_dialog_methods["Method"] = "vanilla"
     db_dialog_methods["Modifier"] = "Nullify"

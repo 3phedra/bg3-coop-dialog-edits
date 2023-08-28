@@ -15,7 +15,6 @@ function dialog_requested(character_target, character_source)
   populate_preference_table()
   --Check if workaround needed for target character in case they're a follower currently in party
   if has_value(db_party_struct["Camp"], character_target) then
-    print("Target is party member")
     if db_party_struct[character_target]["UserID"] ~= db_party_struct[character_source]["UserID"] then
       print("Target doesnt belong to dialog starter")
       --Temporarily re-assign party follower to dialog requester to facilitate dialog
