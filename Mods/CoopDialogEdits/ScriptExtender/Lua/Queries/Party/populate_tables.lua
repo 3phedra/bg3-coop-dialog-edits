@@ -14,21 +14,26 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID)
   db_dialog_struct["Region"] = GetRegion(character_target)
   db_dialog_struct["RegionIsCamp"] = false
   db_party_struct["ActiveParty"] = {}
+  db_party_struct["ActivePlayers"] = {}
   --TODO still todo check if in camp:
   db_party_struct["Camp"] = {}
   for _, entry in pairs(Osi.DB_PartOfTheTeam:Get(nil)) do
     table.insert(db_party_struct["Camp"], entry[1])
   end
-  for _, character in pairs(Osi.Db_Players:Get(nil)) do
-    table.insert(db_party_struct["ActiveParty"], character[1])
+  for _, character in pairs(Osi.DB_PartyMembers:Get(nil)) do
+    
     --BG3SE probably contains info for all of these but for now
     character = character[1]
+    table.insert(db_party_struct["ActiveParty"], character)
     db_party_struct[character] = {}
     db_party_struct[character]["IsPlayer"] = inttobool(IsControlled(character))
     db_party_struct[character]["UserID"] = GetReservedUserID(character)
     db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character)
     db_party_struct[character]["Region"] = GetRegion(character)
     db_party_struct[character]["WasDetached"] = false
+    if db_party_struct[character]["IsPlayer"] then
+      table.insert(db_party_struct["ActivePlayers"], character)
+    end
   end
 end
 function populate_preference_table()
@@ -54,7 +59,7 @@ function populate_preference_table()
   for character in elementIterator(db_party_struct["ActiveParty"]) do
     db_dialog_methods[character] = {}
     
-    if db_dialog_methods["Modifier"] ~= nil and not db_dialog_methods["Modifier"] == "Nullify" then
+    if db_dialog_methods["Modifier"] ~= "Nullify" then
       --TODO round down
       db_dialog_methods[character]["Modifier"] = (-10 + GetAbility(character, db_dialog_methods["Modifier"])) / 2
     else

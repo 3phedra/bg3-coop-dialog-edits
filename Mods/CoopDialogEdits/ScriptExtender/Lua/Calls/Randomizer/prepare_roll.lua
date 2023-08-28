@@ -1,7 +1,7 @@
 Ext.Require("Calls/Randomizer/roll.lua")
 local function fairness_handler(winner)
   --Increment win count for character and reset fairness mod
-  db_dialog_persist[winner]["WinCount"] = db_dialog_methods[winner]["WinCount"] + 1
+  db_dialog_persist[winner]["WinCount"] = db_dialog_persist[winner]["WinCount"] + 1
   db_dialog_persist[winner]["FairnessMod"] = 0
   --Increase odds for players that miss out on multiple dialogs
   for character in elementIterator(db_party_struct["ActiveParty"]) do
@@ -13,11 +13,16 @@ local function fairness_handler(winner)
 end
 function determine_dialog_winner(target)
   local winner
-  local competitors = db_party_struct["ActiveParty"]
-  local competitors_want = db_dialog_methods["CharactersWantDialog"]
+  local competitors = deepcopy(db_party_struct["ActivePlayers"])
+  local competitors_want = deepcopy(db_dialog_methods["CharactersWantDialog"])
   --Ensure target isn't part of roll in case it's a party follower
-  table.remove(competitors, tablefind(competitors, target))
-  table.remove(competitors_want, tablefind(competitors_want, target))
+  if has_value(competitors, target) then
+    table.remove(competitors, tablefind(competitors, target))
+  end
+  if has_value(competitors_want, target) then
+    table.remove(competitors_want, tablefind(competitors_want, target))
+  end
+
   --Get dialog ownership winner
   if db_dialog_methods["RequestOptIn"] and #competitors_want > 1 then
     winner = roll_for_dialog(competitors_want)

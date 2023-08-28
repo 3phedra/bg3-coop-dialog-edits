@@ -7,9 +7,9 @@ function dialog_started(dialog_UUID, dialog_ID)
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
     --Some dialogs, such as crime dialogs start without a request and without being automated. Populate DBs.
-    if db_party_struct["ActiveParty"][1] == nil then
+    if db_party_struct["ActiveParty"] == nil then
       startTime = Ext.Utils.MonotonicTime()
-      Ext.PrintWarning("Populating dialog metadata outside of request. This is hopefully intended.")
+      Ext.Utils.PrintWarning("Populating dialog metadata outside of request. This is hopefully intended.")
       populate_dialog_metadata(DialogGetInvolvedNPC(dialog_ID, 1), DialogGetInvolvedPlayer(dialog_ID, 1), dialog_ID)
     else
       db_dialog_struct["DialogID"] = dialog_ID

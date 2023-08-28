@@ -23,7 +23,7 @@ function attach_character()
   for character in elementIterator(db_party_struct["ActiveParty"]) do
     if db_party_struct[character]["WasDetached"] then
       SetOnStage(character, 1)
-      db_party_struct[db_party_struct[character]]["WasDetached"] = false
+      db_party_struct[character]["WasDetached"] = false
     end
   end
   return

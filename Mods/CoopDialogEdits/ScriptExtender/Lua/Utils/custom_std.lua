@@ -63,7 +63,21 @@ function inttobool(val)
   elseif val == 0 then
     return false
   else
-    Ext.PrintError("Tried to convert " .. val .. " into bool.")
+    Ext.Utils.PrintError("Tried to convert " .. val .. " into bool.")
     return nil
   end
+end
+function deepcopy(orig)
+  local orig_type = type(orig)
+  local copy
+  if orig_type == 'table' then
+      copy = {}
+      for orig_key, orig_value in next, orig, nil do
+          copy[deepcopy(orig_key)] = deepcopy(orig_value)
+      end
+      setmetatable(copy, deepcopy(getmetatable(orig)))
+  else -- number, string, boolean, etc
+      copy = orig
+  end
+  return copy
 end
