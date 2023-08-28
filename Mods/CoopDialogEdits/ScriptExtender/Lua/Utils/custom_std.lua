@@ -81,7 +81,7 @@ function deepcopy(orig)
   end
   return copy
 end
-function sleep(seconds)
+function sleep(milliseconds)
   local start = Ext.Utils.MonotonicTime()
-  repeat until Ext.Utils.MonotonicTime() > start + seconds * 1000
+  repeat until Ext.Utils.MonotonicTime() > start + milliseconds
 end
