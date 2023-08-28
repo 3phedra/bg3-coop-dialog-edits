@@ -7,6 +7,7 @@ function register_passive_spell(character)
   --TODO make distance preference client sided
   --TODO implement UI interaction methods
   --TODO Check how the engine handles dialog leaders being removed
+  --TODO I have a suspicion adding passives via txt can brick saves
   if string.sub(character, -36) == character_host then
     AddPassive(character, "CoopDialogPassiveMethodVanilla")
     AddPassive(character, "CoopDialogPassiveMethodRandom")

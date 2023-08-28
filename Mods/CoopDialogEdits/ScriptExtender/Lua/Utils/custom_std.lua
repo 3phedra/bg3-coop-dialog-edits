@@ -40,63 +40,6 @@ function elementIterator(collection)
   end
 end
 --## Random helper console commands
-function printTable(t)
-  local printTable_cache = {}
-  local function sub_printTable(t, indent)
-    if (printTable_cache[tostring(t)]) then
-      Ext.Utils.PrintWarning(indent .. "*" .. tostring(t))
-    else
-      printTable_cache[tostring(t)] = true
-      if (type(t) == "table") then
-        for pos, val in pairs(t) do
-          if (type(val) == "table") then
-            Ext.Utils.PrintWarning(indent .. "[" .. pos .. "] => " .. tostring(t) .. " {")
-            sub_printTable(val, indent .. string.rep(" ", string.len(pos) + 8))
-            Ext.Utils.PrintWarning(indent .. string.rep(" ", string.len(pos) + 6) .. "}")
-          elseif (type(val) == "string") then
-            Ext.Utils.PrintWarning(indent .. "[" .. pos .. '] => "' .. val .. '"')
-          else
-            Ext.Utils.PrintWarning(indent .. "[" .. pos .. "] => " .. tostring(val))
-          end
-        end
-      else
-        Ext.Utils.PrintWarning(indent .. tostring(t))
-      end
-    end
-  end
-  if (type(t) == "table") then
-    Ext.Utils.PrintWarning(tostring(t) .. " {")
-    sub_printTable(t, "  ")
-    Ext.Utils.PrintWarning("}")
-  else
-    sub_printTable(t, "  ")
-  end
-  Ext.Utils.PrintWarning("\n")
-end
-function dump_table(o)
-  if type(o) == 'table' then
-    local s = ''
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then k = '"' .. k .. '"' end
-      s = s .. '[' .. k .. '] = ' .. dump_table(v) .. ','
-    end
-    return s .. ''
-  else
-    return tostring(o)
-  end
-end
-function dump_table_inline(o)
-  if type(o) == 'table' then
-    local s = ''
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then k = '"' .. k .. '"' end
-      s = s .. '[' .. k .. '] = ' .. dump_table(v) .. ','
-    end
-    return s .. ''
-  else
-    return tostring(o)
-  end
-end
 function getKeysSortedByValue(tbl, sortFunction)
   local keys = {}
   for key in pairs(tbl) do
@@ -112,5 +55,15 @@ function tablefind(tab, el)
     if value == el then
       return index
     end
+  end
+end
+function inttobool(val)
+  if val == 1 then
+    return true
+  elseif val == 0 then
+    return false
+  else
+    Ext.PrintError("Tried to convert " .. val .. " into bool.")
+    return nil
   end
 end

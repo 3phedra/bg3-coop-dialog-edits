@@ -1,6 +1,5 @@
 function detach_character(character)
   db_party_struct[character]["WasDetached"] = true
-  db_party_struct["DetachedPlayer"] = character
   --TODO listeners set off stage get a weird echo in dialogs. Find a better method. Again. :(
   --Something hacky with an ungrouped NPC perhaps...
   --MakePlayer(SomeTotalNobody)
@@ -16,19 +15,16 @@ function detach_character(character)
   return
 end
 function reassign_follower(userid_new, character_target)
-  db_party_struct[character_target]["OrigOwnerUserID"] = db_party_struct[character_target]["UserID"]
-  db_party_struct[character_target]["OrigOwnerCharacter"] = db_party_struct
-      [db_party_struct[character_target]["OrigOwnerUserID"]]
   db_party_struct[character_target]["WasReassigned"] = true
-  db_party_struct["FollowerReassigned"] = character_target
   AssignToUser(userid_new, character_target)
   return
 end
 function attach_character()
-  if db_party_struct["DetachedPlayer"] ~= nil then
-    SetOnStage(db_party_struct["DetachedPlayer"], 1)
-    db_party_struct[db_party_struct["DetachedPlayer"]]["WasDetached"] = false
-    db_party_struct["DetachedPlayer"] = nil
+  for character in elementIterator(db_party_struct["ActiveParty"]) do
+    if db_party_struct[character]["WasDetached"] then
+      SetOnStage(character, 1)
+      db_party_struct[db_party_struct[character]]["WasDetached"] = false
+    end
   end
   return
   --MakePlayer(character)
@@ -38,11 +34,16 @@ function attach_character()
   --MakePlayerActive(character)
 end
 function attach_follower()
-  if db_party_struct["FollowerReassigned"] ~= nil then
-    local target = db_party_struct["FollowerReassigned"]
-    local target_owner = db_party_struct[target]["OrigOwnerUserID"]
-    local owner_character = db_party_struct[target]["OrigOwnerCharacter"]
-    AssignToUser(db_party_struct[target]["OrigOwnerUserID"], target)
-    AttachToPartyGroup(target, owner_character)
+  for character in elementIterator(db_party_struct["ActiveParty"]) do
+    if db_party_struct[character]["WasReassigned"] then
+      local owner = db_party_struct[character]["UserID"]
+      AssignToUser(owner, character)
+      for char in elementIterator(db_party_struct["ActiveParty"]) do
+        if db_party_struct[character]["UserID"] == db_party_struct[char]["UserID"] and db_party_struct[char]["IsPlayer"] then
+          AttachToPartyGroup(character, char)
+        end
+      end
+      db_party_struct[character]["WasReassigned"] = false
+    end
   end
 end

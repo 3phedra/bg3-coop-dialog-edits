@@ -5,13 +5,12 @@ function dialog_ended(dialog_UUID, dialog_ID)
   end
   --Filter out dialogs that do not involve the party
   if DialogGetInvolvedPlayer(dialog_ID, 1) ~= nil then
-    --Return a re-assigned follower to their original owner
     --TODO pass dialog_id to handle eventual simultaneous dialogs
-    attach_follower()
-    --Re-attach a detached player character to their original user
+    dump_log()
     attach_character()
+    attach_follower()
     cleanup()
-    return
   end
+  return
 end
 Ext.Utils.Print(string.format("[%s]: Dialog end event subscribed", mod_info.Name))

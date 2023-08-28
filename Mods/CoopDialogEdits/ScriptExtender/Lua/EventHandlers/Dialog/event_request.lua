@@ -24,11 +24,11 @@ function dialog_requested(character_target, character_source)
   if check_reassignment_requested(character_target) then
     --Check if dialog target isn't a vendor or otherwise special (maybe companions?), as that would be annoying
     if not check_if_target_is_special(character_target) then
-      db_party_struct["DialogOwner"] = determine_dialog_winner(character_target)
+      db_dialog_struct["DialogOwner"] = determine_dialog_winner(character_target)
       --If dialog roll winner is not the character who started the dialog, detach dialog starter and re-initiate dialog for the winner
-      if db_party_struct["DialogOwner"] ~= character_source then
+      if db_dialog_struct["DialogOwner"] ~= character_source then
         detach_character(character_source)
-        manual_restart_dialog(db_party_struct["DialogOwner"], character_target)
+        manual_restart_dialog(db_dialog_struct["DialogOwner"], character_target)
       end
       --TODO if check_if_target_is_special() returns true, dialog with target will become impossible. Fix it below.
     else

@@ -27,16 +27,12 @@ if is_debug then
   Ext.Require("Utils/custom_std.lua")
   Ext.Require("Utils/osiris_helper.lua")
   Ext.Osiris.RegisterListener("MessageBoxChoiceClosed", 3, "after", dummyfunc)
-  Ext.RegisterConsoleCommand("PrintTable", printTable)
+  Ext.RegisterConsoleCommand("PrintTable", Ext.Dump)
   Ext.RegisterConsoleCommand("ElementIterator", elementIterator)
   Ext.RegisterConsoleCommand("SortedPairs", sorted_pairs)
   Ext.RegisterConsoleCommand("TableHasValue", has_value)
   Ext.RegisterConsoleCommand("PrintParty", list_party)
   Ext.RegisterConsoleCommand("StageParty", stage_party)
-  Ext.RegisterConsoleCommand("RollWinners", roll_stats)
-  Ext.RegisterConsoleCommand("GetDialogs", query_dialogs)
-  --Scope creep
-  Ext.RegisterConsoleCommand("TheCommonBugFixer", bug_fixer)
-  --Ohhh the misery
   --Ext.Utils.GenerateIdeHelpers()
+  Ext.IO.SaveFile("DialogEnd.log", "Log Start")
 end
