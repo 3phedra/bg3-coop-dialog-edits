@@ -26,7 +26,8 @@ is_debug = false
 if is_debug then
   Ext.Require("Utils/custom_std.lua")
   Ext.Require("Utils/osiris_helper.lua")
-  Ext.Osiris.RegisterListener("MessageBoxChoiceClosed", 3, "after", dummyfunc)
+  Ext.Require("EventHandlers/Game/message_boxes.lua")
+  Ext.Osiris.RegisterListener("MessageBoxChoiceClosed", 3, "after", messagebox_closed)
   Ext.RegisterConsoleCommand("PrintTable", Ext.Dump)
   Ext.RegisterConsoleCommand("ElementIterator", elementIterator)
   Ext.RegisterConsoleCommand("SortedPairs", sorted_pairs)
@@ -34,5 +35,6 @@ if is_debug then
   Ext.RegisterConsoleCommand("PrintParty", list_party)
   Ext.RegisterConsoleCommand("StageParty", stage_party)
   --Ext.Utils.GenerateIdeHelpers()
-  Ext.IO.SaveFile("DialogEnd.log", "Log Start")
 end
+
+Ext.IO.SaveFile("DialogEnd.log", "Log Start")

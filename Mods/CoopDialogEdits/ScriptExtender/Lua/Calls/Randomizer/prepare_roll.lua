@@ -19,18 +19,14 @@ function determine_dialog_winner(target)
   table.remove(competitors, tablefind(competitors, target))
   table.remove(competitors_want, tablefind(competitors_want, target))
   --Get dialog ownership winner
-  if db_dialog_methods["Method"] ~= "vanilla" then
-    if db_dialog_methods["RequestOptIn"] and #competitors_want > 1 then
-      winner = roll_for_dialog(competitors_want)
-      fairness_handler(winner)
-    elseif db_dialog_methods["RequestOptIn"] and #competitors_want == 1 then
-      winner = competitors_want[1]
-    else
-      winner = roll_for_dialog(competitors)
-      fairness_handler(winner)
-    end
+  if db_dialog_methods["RequestOptIn"] and #competitors_want > 1 then
+    winner = roll_for_dialog(competitors_want)
+    fairness_handler(winner)
+  elseif db_dialog_methods["RequestOptIn"] and #competitors_want == 1 then
+    winner = competitors_want[1]
   else
-    winner = db_dialog_struct["DialogOwner"]
+    winner = roll_for_dialog(competitors)
+    fairness_handler(winner)
   end
   return winner
 end
