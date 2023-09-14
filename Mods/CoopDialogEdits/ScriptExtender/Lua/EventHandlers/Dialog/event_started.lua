@@ -1,6 +1,6 @@
 Ext.Require("Queries/UI/notify.lua")
 function dialog_started(dialog_UUID, dialog_ID)
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
+  if HasActiveStatus(GetHostCharacter(), "DialogMainToggle") == 0 then
     return
   end
   --Get character that triggered dialog event
@@ -40,7 +40,7 @@ function dialog_started(dialog_UUID, dialog_ID)
   return
 end
 function automated_dialog_started(dialog_UUID, dialog_ID)
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
+  if HasActiveStatus(GetHostCharacter(), "DialogMainToggle") == 0 then
     return
   end
   dialog_started(dialog_UUID, dialog_ID)

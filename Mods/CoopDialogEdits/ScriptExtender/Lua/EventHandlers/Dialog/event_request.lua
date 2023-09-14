@@ -8,7 +8,7 @@ Ext.Require("Utils/custom_std.lua")
 --## Osiris event handlers
 function dialog_requested(character_target, character_source)
   startTime = Ext.Utils.MonotonicTime()
-  if HasActiveStatus(GetHostCharacter(), "DialogPreferenceDisable") == 1 then
+  if HasActiveStatus(GetHostCharacter(), "DialogMainToggle") == 0 then
     return
   end
   populate_dialog_metadata(character_target, character_source, 0, 0)

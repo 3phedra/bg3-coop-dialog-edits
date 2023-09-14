@@ -12,7 +12,7 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID,
   db_dialog_struct["DialogUUID"] = dialog_UUID
   db_dialog_struct["DialogOwner"] = character_source
   db_dialog_struct["DialogTarget"] = character_target
-  db_dialog_struct["Region"] = GetRegion(character_target)
+  db_dialog_struct["Region"] = GetRegion(character_source)
   db_dialog_struct["RegionIsCamp"] = false
   db_party_struct["ActiveParty"] = {}
   db_party_struct["ActivePlayers"] = {}
@@ -29,7 +29,7 @@ function populate_dialog_metadata(character_target, character_source, dialog_ID,
     db_party_struct[character] = {}
     db_party_struct[character]["IsPlayer"] = inttobool(IsControlled(character))
     db_party_struct[character]["UserID"] = GetReservedUserID(character)
-    db_party_struct[character]["Distance"] = GetDistanceTo(character_target, character)
+    db_party_struct[character]["Distance"] = GetDistanceTo(character_source, character)
     db_party_struct[character]["Region"] = GetRegion(character)
     db_party_struct[character]["WasDetached"] = false
     if db_party_struct[character]["IsPlayer"] then

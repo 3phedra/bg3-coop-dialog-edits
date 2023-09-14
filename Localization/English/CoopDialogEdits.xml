@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentList>
+	<content contentuid="eb63aa9d-1367-46a5-9416-0357d03b7ab6" version="1">Coop-Dialog Switches</content>
+  <content contentuid="9f699aaa-3b01-43cf-b2b6-307f5cb45a79" version="1">Click this to enable force-pulling all players into dialogs (main feature), aswell as add another toggle for random dialog rolling.</content>
+  
+	<content contentuid="e9f20e2f-a696-4906-ab4b-5075043495e1" version="1">Coop-Dialog Rolls</content>
+  <content contentuid="d90001a9-0a0f-4438-963a-66bc3ed06482" version="1">Click this to toggle dialog rolling options.</content>
+
 	<content contentuid="e06e77fb-b1e1-405d-85d7-079d94dbaf5f" version="1">Dialog Method: Vanilla</content>
 	<content contentuid="ab0cf122-3c0b-4604-a7b9-42cfd5b63daa" version="1">Dialog starter always owns dialog ownership.</content>
 

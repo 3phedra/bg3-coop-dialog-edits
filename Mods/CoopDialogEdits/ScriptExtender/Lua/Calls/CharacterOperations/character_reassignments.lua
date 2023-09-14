@@ -11,6 +11,8 @@ function detach_character(character)
   --What is DualDialogStart(Dialog, InstanceID)
   --What about setting the target off stage, then onstage and restart manually?
   --Maybe SharedTurnBaseMode(CHARACTER, INTEGER) gets rid of shared turns
+
+  --TODO: DOES NOT WORK ANYMORE WTF
   SetOnStage(character, 0)
   return
 end
